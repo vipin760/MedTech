@@ -11,7 +11,7 @@ export class TextInputComponent {
   @Input()
   label!:string;
 
-  @Input()
+  @Input() 
   control!:AbstractControl;
 
   @Input()

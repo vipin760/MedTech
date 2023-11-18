@@ -20,7 +20,6 @@ import { MatCardModule } from '@angular/material/card'
 import { MatTabsModule} from '@angular/material/tabs'
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { PatientsRegisterComponent } from './components/pages/patients-register/patients-register.component';
 
 
 
@@ -29,12 +28,11 @@ import { PatientsRegisterComponent } from './components/pages/patients-register/
     AppComponent,
     PatientsNavbarComponent,
     PatientsLoginComponent,
-    InputContainerComponent,
+    InputContainerComponent, 
     InputValidatorsComponent,
     TextInputComponent,
     DefaultButtonComponent,
     TitleComponent,
-    PatientsRegisterComponent,
   ],
   imports: [
     BrowserModule,
