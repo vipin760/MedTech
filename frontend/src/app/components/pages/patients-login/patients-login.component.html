@@ -1,2 +1,25 @@
-<p>patients-login works!</p>
- 
+<div class="container">
+  <div class="border border-success">
+
+    <form action="" [formGroup]="loginForm" (ngSubmit)="submit()">
+      <app-title title="Login"></app-title>
+      <text-input
+        label="Email"
+        [control]="fc['email']"
+        [showErrorWhen]="isSubmitted"
+        type="email"
+      >
+      </text-input>
+
+      <text-input
+        label="Password"
+        [control]="fc['password']"
+        [showErrorWhen]="isSubmitted"
+        type="password"
+      >
+      </text-input>
+     <default-button text="Login">
+     </default-button>
+    </form >
+  </div>
+</div>

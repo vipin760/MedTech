@@ -1796,7 +1796,7 @@ input-container.html
 <label for="">{{label}}</label>
 <div class="content">
     <ng-content></ng-content>
-</div>
+</div> 
 </div>
 
 goto home page 
