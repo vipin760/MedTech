@@ -9,6 +9,9 @@ import { PatientsService } from 'src/app/services/patients.service';
   styleUrls: ['./patients-login.component.css'],
 })
 export class PatientsLoginComponent implements OnInit {
+  hide:boolean=true;
+  height:string='auto'
+  width:string='90%'
   loginForm!: FormGroup;
   isSubmitted: boolean = false;
   returnUrl: string = '';

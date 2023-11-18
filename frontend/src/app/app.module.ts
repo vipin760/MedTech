@@ -50,7 +50,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     ToastrModule.forRoot({
       timeOut:3000,
-      positionClass:'toast-bottom-right',
+      positionClass:'toast-top-right',
       newestOnTop:false
     })
 
