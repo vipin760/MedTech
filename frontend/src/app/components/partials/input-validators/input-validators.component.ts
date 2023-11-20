@@ -34,9 +34,9 @@ export class InputValidatorsComponent implements OnInit, OnChanges{
     this.control.statusChanges.subscribe(()=>{
       this.checkValidators()
     })
-    this.control.statusChanges.subscribe(()=>{
-      this.checkValidators()
-    })
+   this.control.valueChanges.subscribe(()=>{
+    this.checkValidators()
+   })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
