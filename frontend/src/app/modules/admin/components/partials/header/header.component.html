@@ -1,1 +1,40 @@
-<p>header works!</p>
+<div class="container-fluid bg-info shadow">
+    <div class="row">
+        <div class="top"></div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand col-md-7" href="#" [routerLink]="['/home']"><img src="/assets/download (1).png" alt=""></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse col-md-5" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                  </li>
+                  <!-- <li class="nav-item" >
+                    <a class="nav-link" *ngIf="!patients.token" [routerLink]="['/login']" >Login</a>
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link" *ngIf="patients.token" (click)="logout()">Logout</a>
+                  </li> -->
+                  <li class="nav-item" >
+                    <a class="nav-link">Login</a>
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link">Logout</a>
+                  </li>
+                </ul>
+                <!-- <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form> -->
+              </div>
+          </nav>
+    </div>
+    </div>
