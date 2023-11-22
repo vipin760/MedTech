@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PatientsLoginComponent } from './components/pages/patients-login/patients-login.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  {path:'login', component:PatientsLoginComponent}
+  {path:'',component:AppComponent, loadChildren:()=> import('../app/modules/patient/patient.module').then(com=> com.PatientModule)}
 ];
 
 @NgModule({

@@ -17,7 +17,7 @@ export class PatientsService {
   constructor(private http : HttpClient, private toastrService: ToastrService) {
     this.PatientObservable = this.PatientSubject.asObservable()
    }
-////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////// 
 
 
    loginPatients(patientsData:IPatients):Observable<Patients>{

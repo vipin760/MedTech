@@ -1,0 +1,4 @@
+<mat-error *ngIf="showErrorWhen && showErrorMessages">
+    <span *ngFor="let errorMessage of showErrorMessages">{{errorMessage}}</span>
+</mat-error>
+

@@ -1,0 +1,66 @@
+<div class="login-form">
+   <mat-card>
+    <mat-card-header>
+        <app-title text="Login"></app-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form action="" [formGroup]="loginForm" (ngSubmit)="submit()">
+        <table>
+            <tr>
+                <td> <text-input
+                    label="Email" type="email" [control]="this.fc['email']" [showErrorWhen]="isSubmitted" 
+                    > 
+                    </text-input>
+                </td>
+            </tr>
+            <tr>
+                <td><text-input
+                    label="Password" type="text" [control]="this.fc['password']"  [showErrorWhen]="isSubmitted"
+                    ></text-input></td>
+            </tr>
+            <tr>
+                <td>
+                    <default-button text="Login"></default-button>
+                </td> 
+            </tr>
+           </table>
+    </form>
+    </mat-card-content>
+   </mat-card>
+</div>
+
+
+
+
+<!-- 
+<div class="login-form">
+    <mat-card>
+        <mat-card-content>
+            <form action="" [formGroup]="loginForm" (ngSubmit)="submit()">
+                <div>
+                    <div class="heade">Login</div> 
+                   
+                    <div>
+                        <label for="">Email:</label>
+                        <input type="text" formControlName="email">
+                        <div *ngIf="isSubmitted && this.fc['email'].errors">
+                        <p *ngIf="this.fc['email'].errors">invalid email</p>
+                        <p *ngIf="this.fc['email'].errors['required']">not allowed empty value</p>
+                        </div>
+                    </div> 
+                    <div>
+                        <label for="">Password:</label>
+                        <input type="text" formControlName="password">
+                       <div *ngIf="isSubmitted && this.fc['password'].errors">
+                    <p *ngIf="this.fc['password'].errors['required']">not allowed empty value</p>
+                    </div>
+            
+                        </div>
+                        <div>
+                            <button type="submit">click</button>
+                        </div>
+                    </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div> -->
