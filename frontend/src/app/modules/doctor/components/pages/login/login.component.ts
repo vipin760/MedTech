@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit{
   }
 
   submit(){
+    this.isSubmitted=true
     if(this.loginForm.invalid) return;
     this.doctorService.doctorLogin({email:this.fc['email'].value, password:this.fc['password'].value}).subscribe((data)=>{
       this.router.navigateByUrl('/doctor/login')

@@ -1,5 +1,8 @@
 <form [formGroup]="loginForm" (ngSubmit)="submit()">
 <input type="text" formControlName="email">
+<div *ngIf="isSubmitted && this.fc['email'].errors">
+<p *ngIf="this.fc['email'].errors">email required</p>
+</div>
 <input type="text" formControlName="password">
 <button type="submit">login</button>
 </form>
