@@ -3,7 +3,7 @@ import { AdminService } from '../../../service/admin.service'
 import { AdminLogin } from '../../../shared/model/Admin.model';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-admin-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
