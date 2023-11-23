@@ -1,3 +1,5 @@
+git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)' --count=1
+
 step 1:
 create a component
 export class LoginComponent implements OnInit{ 

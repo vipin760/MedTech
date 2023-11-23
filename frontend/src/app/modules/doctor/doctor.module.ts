@@ -7,6 +7,10 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { FooterComponent } from './components/partials/footer/footer.component';
+import { InputContainerComponent } from './components/partials/input-container/input-container.component';
+import { InputValidatorComponent } from './components/partials/input-validator/input-validator.component';
+import { DefaultButtonComponent } from './components/partials/default-button/default-button.component';
+import { AppTitleComponent } from './components/partials/app-title/app-title.component';
 
 
 @NgModule({
@@ -15,7 +19,11 @@ import { FooterComponent } from './components/partials/footer/footer.component';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    InputContainerComponent,
+    InputValidatorComponent,
+    DefaultButtonComponent,
+    AppTitleComponent
   ],
   imports: [
     CommonModule,
