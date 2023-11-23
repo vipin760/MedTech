@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { DoctorComponent } from './doctor.component';
 import { LoginComponent } from './components/pages/login/login.component';
@@ -11,6 +10,8 @@ import { InputContainerComponent } from './components/partials/input-container/i
 import { InputValidatorComponent } from './components/partials/input-validator/input-validator.component';
 import { DefaultButtonComponent } from './components/partials/default-button/default-button.component';
 import { AppTitleComponent } from './components/partials/app-title/app-title.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import { AppTitleComponent } from './components/partials/app-title/app-title.com
   ],
   imports: [
     CommonModule,
-    DoctorRoutingModule
+    DoctorRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule 
   ]
 })
 export class DoctorModule { }

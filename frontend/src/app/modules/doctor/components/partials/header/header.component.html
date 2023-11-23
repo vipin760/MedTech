@@ -18,17 +18,11 @@
                     <a class="nav-link" href="#">Contact us</a>
                   </li>
                   <li class="nav-item" >
-                    <a class="nav-link" [routerLink]="['/doctor/login']" >Login</a>
+                    <a class="nav-link" *ngIf="!doctor.token" [routerLink]="['/doctor/login']" >Login</a>
                   </li> 
                   <li class="nav-item">
-                    <a class="nav-link" >Logout</a>
+                    <a class="nav-link" *ngIf="doctor.token" (click)="logout()">Logout</a>
                   </li>
-                  <!-- <li class="nav-item" >
-                    <a class="nav-link" *ngIf="!patients.token" [routerLink]="['/login']" >Login</a>
-                  </li> 
-                  <li class="nav-item">
-                    <a class="nav-link" *ngIf="patients.token" (click)="logout()">Logout</a>
-                  </li> -->
                 </ul>
                 <!-- <form class="d-flex">
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
