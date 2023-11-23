@@ -11,12 +11,12 @@ router.post('/login',(req,res)=>{
 
        res.status(200).send(generateToken(user))
     }else{
-       res.status(404).send("invalid user")
+       res.status(404).send("invalid user") 
     }
 }) 
 
 const generateToken = (user:any)=>{
-   const token = jwt.sign({email:user.email, is_admin: user.is_admin },"randomkey",{expiresIn:"30d"})
+   const token = jwt.sign({email:user.email, is_admin: user.is_patient },"randomkey",{expiresIn:"30d"})
    user.token = token
    return user
 

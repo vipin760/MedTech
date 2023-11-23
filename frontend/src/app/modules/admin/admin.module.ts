@@ -12,6 +12,8 @@ import { InputContainerComponent } from './components/partials/input-container/i
 import { TextInputComponent } from './components/partials/text-input/text-input.component';
 import { DefaultButtonComponent } from './components/partials/default-button/default-button.component';
 import { AppTitleComponent } from './components/partials/app-title/app-title.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { AppTitleComponent } from './components/partials/app-title/app-title.com
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ]
 })
 export class AdminModule { }

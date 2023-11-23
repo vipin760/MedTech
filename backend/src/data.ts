@@ -86,6 +86,8 @@ const sample_foods: any[] = [
       password: "12345",
       address: "Toronto On",
       isAdmin: true,
+      isPatient:false,
+      isDoctor:false
     },
     {
       name: "Jane Doe",
@@ -93,6 +95,31 @@ const sample_foods: any[] = [
       password: "12345",
       address: "Shanghai",
       isAdmin: false,
+    },{ 
+      name: "admin",
+      email: "admin@gmail.com",
+      password: "12345",
+      address: "Toronto On",
+      isAdmin: true,
+      isPatient:false,
+      isDoctor:false
+    },
+    { 
+      name: "patient",
+      email: "patient@gmail.com",
+      password: "12345",
+      address: "Toronto On",
+      isAdmin: false,
+      isPatient:true,
+      isDoctor:false
+    },{ 
+      name: "doctor",
+      email: "doctor@gmail.com",
+      password: "12345",
+      address: "Toronto On",
+      isAdmin: false,
+      isPatient:false,
+      isDoctor:true
     },
   ];
   
