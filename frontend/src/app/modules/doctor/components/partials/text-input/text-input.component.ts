@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-text-input',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./text-input.component.css']
 })
 export class TextInputComponent {
+  @Input()
+  label!:string
+
+  @Input()
+  control!:AbstractControl;
+
+  @Input()
+  type: 'email' | 'text' | 'password' = 'text'
+
+  @Input()
+  showErrorWhen:boolean=true;
+
+  get formControl(){
+    return this.control as FormControl
+  }
+
 
 }

@@ -8,3 +8,6 @@
     border-top-right-radius: 5rem;
     border-bottom-right-radius: 5rem;
 }
+.btn button:hover{
+    background-color: #8dc63f;
+}

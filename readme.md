@@ -2047,7 +2047,7 @@ MONG_URI = mongodb+srv://vipinm500:zlfNL0weSIz6nYH2@cluster0.0sh1ubd.mongodb.net
 step :65
 ..........................................................................................
 npm i mongoose dotenv bcryptjs express-async-handler
-
+ 
 step :66
 ..........................................................................................
 ## connect to mongoose atlas

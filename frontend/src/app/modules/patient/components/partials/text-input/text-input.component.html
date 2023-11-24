@@ -1,8 +1,10 @@
 <mat-form-field>
     <mat-label>{{label}}</mat-label>
     <input matInput [type]="type" [formControl]="formControl" [placeholder]="label">
+    
     <input-validator [control]="control" [showErrorWhen] = "showErrorWhen"
     ></input-validator>
+    
   
         
     

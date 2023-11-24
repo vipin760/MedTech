@@ -1,0 +1,10 @@
+.login-form{
+    display: flex;
+    margin-top: 25px;
+    height: auto;
+    width: 100%;
+    justify-content: center;
+}
+.mat-card{
+    height: auto;
+}

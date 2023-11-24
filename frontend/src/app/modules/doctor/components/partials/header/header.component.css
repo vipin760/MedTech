@@ -1,0 +1,16 @@
+.top{
+    width: 100%;
+    height: 12px;
+    background: #8dc63f;
+}
+
+.nav-link{
+    font-weight: bold;
+    color: #444444;
+    margin-left: 75%;
+}
+
+.nav-link:hover{
+    font-weight: bold;
+    color: #8dc63f;
+}

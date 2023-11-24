@@ -14,6 +14,8 @@ import { DefaultButtonComponent } from './components/partials/default-button/def
 import { AppTitleComponent } from './components/partials/app-title/app-title.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PatientModule } from '../patient/patient.module';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdminRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatCardModule,
+    PatientModule
   ]
 })
 export class AdminModule { }

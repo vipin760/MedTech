@@ -1,1 +1,9 @@
-<p>text-input works!</p>
+<mat-form-field>
+    <mat-doctor-label>{{label}}</mat-doctor-label>
+    <input matInput [type]="type" [formControl]="formControl" [placeholder]="label">
+    <input-doctor-validator [control]="control" [showErrorWhen] = "showErrorWhen"
+    ></input-doctor-validator>
+  
+        
+    
+</mat-form-field>

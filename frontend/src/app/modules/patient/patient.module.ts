@@ -42,6 +42,15 @@ import { AppTitleComponent } from './components/partials/app-title/app-title.com
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule
+  ],
+  exports:[
+    HeaderComponent,
+    FooterComponent,
+    InputContainerComponent,
+    DefaultButtonComponent,
+    InputValidatorComponent,
+    TextInputComponent,
+    AppTitleComponent
   ]
 })
 export class PatientModule { }

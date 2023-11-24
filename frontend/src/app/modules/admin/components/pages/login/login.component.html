@@ -1,5 +1,30 @@
-<form action="" [formGroup]="loginForm" (ngSubmit)="submit()">
-    <input type="text" formControlName="email">
-    <input type="text" formControlName="password">
-    <button>login</button>
-</form>
+<div class="login-form">
+    <mat-card>
+        <mat-card-header>
+            <app-title text="Login"></app-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form action="" [formGroup]="loginForm" (ngSubmit)="submit()">
+                <table>
+                    <tr>
+                        <td><text-input
+                            type="email" label="Email" [control]="this.fc['email']" [showErrorWhen]="isSubmitted"
+                            ></text-input></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <text-input
+                            type="password" label="Password" [control]="this.fc['password']" [showErrorWhen]="isSubmitted"
+                            ></text-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <default-button type="submit" text="Login"></default-button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit{
     return this.loginForm.controls
   }
   submit(){
+    this.isSubmitted=true
     if(this.loginForm.invalid) return;
     this.adminService.loginAdmin({email:this.fc['email'].value, password:this.fc['password'].value}).subscribe((d)=>{
       this.router.navigateByUrl('/admin/home')
