@@ -85,9 +85,10 @@ const sample_foods: any[] = [
       email: "john@gmail.com",
       password: "12345",
       address: "Toronto On",
-      isAdmin: true,
-      isPatient:false,
-      isDoctor:false
+      isAdmin: false,
+      isPatient:true,
+      isDoctor:false,
+      is_blocked:false,
     },
     {
       name: "Jane Doe",
@@ -95,6 +96,9 @@ const sample_foods: any[] = [
       password: "12345",
       address: "Shanghai",
       isAdmin: false,
+      isPatient:false,
+      isDoctor:true,
+      is_blocked:false,
     },{ 
       name: "admin",
       email: "admin@gmail.com",
@@ -102,7 +106,8 @@ const sample_foods: any[] = [
       address: "Toronto On",
       isAdmin: true,
       isPatient:false,
-      isDoctor:false
+      isDoctor:false,
+      is_blocked:false,
     },
     { 
       name: "patient",
@@ -111,7 +116,8 @@ const sample_foods: any[] = [
       address: "Toronto On",
       isAdmin: false,
       isPatient:true,
-      isDoctor:false
+      isDoctor:false,
+      is_blocked:false,
     },{ 
       name: "doctor",
       email: "doctor@gmail.com",
@@ -119,7 +125,8 @@ const sample_foods: any[] = [
       address: "Toronto On",
       isAdmin: false,
       isPatient:false,
-      isDoctor:true
+      isDoctor:true,
+      is_blocked:false,
     },
   ];
   
