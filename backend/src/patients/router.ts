@@ -1,11 +1,14 @@
 import { Router } from "express";
 import { sample_users } from "../data";
 import jwt from "jsonwebtoken";
-import { User, PatientModel } from "./model";
 import asyncHandler from "express-async-handler";
 import { HTTP_BAD_REQUEST } from "../constant.ts/http_status";
-import { IUser } from "../shared/interface/user.interface";
+import { IPatient } from "../shared/interface/patient.interface";
 import bcrypt from "bcryptjs";
+import { PatientModel } from "./model";
+import { Patient_Register } from "../shared/interface/patient_Register.interface";
+import { PatientToken } from "../shared/interface/pateintToken";
+import { PatientTokenModel } from "../shared/model/patientToken.model";
 
 const router = Router();
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,16 +37,19 @@ router.post(
     }
   })
 );
-
-const generateToken = (patientData: any) => {
+// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvY3RvcjEyMzRAZ21haWwuY29tIiwiaXNQYXRpZW50Ijp0cnVlLCJpYXQiOjE3MDA4NDgwMDgsImV4cCI6MTcwMzQ0MDAwOH0.XmAgigthfwj5TD4CJhdXPsmDwzgNM-s0JwF6QtoSIhc
+// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvY3RvcjEyMzRAZ21haWwuY29tIiwiaXNwUHRpZW50Ijp0cnVlLCJpYXQiOjE3MDA4NDgyMjksImV4cCI6MTcwMzQ0MDIyOX0.OBhLfdVW_xgwRrYgQL7vF1bcf7QMFY9R3_UTjX2fuhA
+const generateToken = (patientData: PatientTokenModel) => {
   const token = jwt.sign(
-    { email: patientData.email, is_admin: patientData.is_patient },
+    { email: patientData.email, ispPtient: patientData.isPatient },
     process.env.JWT_SECRET!,
     { expiresIn: "30d" }
   );
   patientData.token = token;
+  console.log("token",patientData);
+  
   return patientData;
-};
+}; 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,12 +75,12 @@ router.post(
       const isEmail = await PatientModel.findOne({ email: email });
       if (!isEmail) {
         const passwordHash = await bcrypt.hash(password, 10);
-        const newPatient: IUser = {
+        const newPatient: Patient_Register = {
           name,
           email: email.toLowerCase(),
           password: passwordHash,
           address: address,
-          isPatient: true,
+          isPatient: true, 
         };
 
         const patientSave = await PatientModel.create(newPatient);
@@ -96,25 +102,20 @@ router.post(
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-const generateTokenResponse = (user: any) => {
+const generateTokenResponse = (patient: PatientTokenModel) => {
   const token = jwt.sign(
     {
-      id: user.id,
-      email: user.email,
-      isAdmin: user.isAdmin,
+      email: patient.email,
+      isPatient: patient.isPatient,
     },
     process.env.JWT_SECRET!,
     {
       expiresIn: "30d",
     }
-  );
+  ); 
 
-  const userWithToken = {
-    ...user.toObject(), // Convert the Mongoose document to a plain JavaScript object
-    token: token,
-  };
-  // user.token = token
-  return userWithToken;
+ patient.token = token 
+  return patient 
 };
 ////////////////////////////////////////////////////////////////////////////////////////////
 

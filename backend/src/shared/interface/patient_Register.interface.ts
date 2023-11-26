@@ -1,4 +1,4 @@
-export interface IUser{
+export interface Patient_Register{
     name:string;
     email:string;
     password:string;

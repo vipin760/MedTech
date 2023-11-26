@@ -1,0 +1,52 @@
+<div class="register-form">
+    <mat-card>
+       <mat-card-header>
+        <app-title text="Register"></app-title>
+       </mat-card-header>
+       <mat-card-content>
+       <form action="" [formGroup]="registerForm" (ngSubmit)="submit()">
+        <table>
+            <tr>
+                <td>
+                    <text-input
+                    label="Name" type="text" [showErrorWhen]="isSubmitted" [control]="this.fc['name']"
+                    >
+                    </text-input>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <text-input
+                    label="Email" type="email" [showErrorWhen]="isSubmitted" [control]="this.fc['email']"
+                    >
+                    </text-input>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <text-input
+                    label="Address" type="text" [showErrorWhen]="isSubmitted" [control]="this.fc['address']"
+                    >
+                    </text-input>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <text-input
+                    label="password" type="password" [showErrorWhen]="isSubmitted" [control]="this.fc['password']"
+                    >
+                    </text-input>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <default-button type="submit"
+                    text="Sign up"
+                    ></default-button>
+                </td>
+            </tr>
+        </table>
+    </form>
+       </mat-card-content>
+    </mat-card>
+</div>

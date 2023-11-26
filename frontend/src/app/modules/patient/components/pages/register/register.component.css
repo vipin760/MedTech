@@ -1,13 +1,11 @@
-.login-form{
+.register-form{
     display: flex;
-    margin-top: 25px;
-    height: auto;
     width: 100%;
+    height: auto;
+    margin-top: 25px;
     justify-content: center;
 }
 .mat-card{
     height: auto;
-}
-tr>td>a{
-  margin-top: 15px;  
+    padding: 5px;;
 }

@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AppTitleComponent } from './components/partials/app-title/app-title.component';
+import { RegisterComponent } from './components/pages/register/register.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AppTitleComponent } from './components/partials/app-title/app-title.com
     DefaultButtonComponent,
     InputValidatorComponent,
     TextInputComponent,
-    AppTitleComponent
+    AppTitleComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
