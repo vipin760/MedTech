@@ -19,6 +19,5 @@ constructor(private doctorService:DoctorService){
 logout(){
   this.doctorService.logoutDoctor()
 }
-
 ///////////////////////////////////////////////////////////////////////
 }
