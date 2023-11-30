@@ -2242,27 +2242,69 @@ fontSizeRem = 1.3
 widthRem = 12
 @Output()
 onClick = new EventEmitter()
-
 }
-
-
-
 <default-button text="Register"></default-button>
         <div class="login">Already User? &nbsp;
             <a routerLink='/login' [queryParams]="{returnUrl: returnUrl}" > Login Here</a>
         </div>
-
-
-
-
-
-
-
-
-
-
 hosting render .com
 step:1
 // npm run prebuild out of the frondend and backend
+
+
+admin login and logout
+admin add doctor
+and admin can update doctor
+admin block
+list blocked users
+doctor verify doctor
+
+In a hospital management project, when adding details for a doctor, you would typically need to collect and store a variety of information to ensure comprehensive records. Here's a list of common data fields for adding doctor details:
+Personal Information:
+Full Name
+Gender
+Date of Birth
+Contact Information (Phone, Email)
+Address
+Professional Information:
+Medical License Number
+Specialization
+Department (e.g., Cardiology, Pediatrics, Orthopedics)
+Qualifications (Degrees, Certifications)
+Years of Experience
+Work Schedule:
+Days and Hours of Availability
+On-call Schedule
+Hospital Affiliation:
+Hospital Name
+Department/Unit within the Hospital
+Joining Date
+Clinical Privileges:
+List of Procedures the Doctor is Authorized to Perform
+Operating Room Access
+Credentials:
+User ID
+Password (securely hashed and stored)
+Emergency Contact:
+Name
+Relationship
+Contact Information
+Profile Picture:
+A photo of the doctor
+Electronic Signature:
+For digitally signing documents or prescriptions
+Insurance Information:
+Malpractice Insurance Details
+Availability and Appointments:
+Booking preferences (if applicable)
+Existing appointments
+Patient Reviews and Ratings:
+If you're implementing a feedback system, you might include patient reviews and ratings for the doctor.
+Research and Publications:
+If the doctor is involved in research, you might include a section for publications and ongoing projects.
+Leave and Absence:
+Record of vacation days, sick leave, or other types of absences.
+Linked Accounts:
+If the hospital management system is integrated with other systems, you may need to store information about linked accounts or profiles.
 
 

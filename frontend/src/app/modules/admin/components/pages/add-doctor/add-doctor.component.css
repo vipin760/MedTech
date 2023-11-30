@@ -1,0 +1,9 @@
+.add-doctor{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 12px;
+}
+table tr td{
+    padding: 12px;
+}

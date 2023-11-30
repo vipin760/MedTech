@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PatientModule } from '../patient/patient.module';
 import { MatCardModule } from '@angular/material/card';
+import { AddDoctorComponent } from './components/pages/add-doctor/add-doctor.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatCardModule } from '@angular/material/card';
     InputContainerComponent,
     TextInputComponent,
     DefaultButtonComponent,
-    AppTitleComponent
+    AppTitleComponent,
+    AddDoctorComponent
   ],
   imports: [
     CommonModule,
