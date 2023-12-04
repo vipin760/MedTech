@@ -2258,6 +2258,7 @@ and admin can update doctor
 admin block
 list blocked users
 doctor verify doctor
+add department
 
 In a hospital management project, when adding details for a doctor, you would typically need to collect and store a variety of information to ensure comprehensive records. Here's a list of common data fields for adding doctor details:
 Personal Information:
@@ -2308,3 +2309,37 @@ Linked Accounts:
 If the hospital management system is integrated with other systems, you may need to store information about linked accounts or profiles.
 
 
+ <tr>
+            <td>
+              <text-input
+              label="Full Name" type="text" [control]="this.fc['fullName']" [showErrorWhen]="isSubmitted" 
+              ></text-input>
+            </td>
+            <td>
+                <text-input 
+                label="Email" type="email" [control]="this.fc['email']" [showErrorWhen]="isSubmitted"
+                ></text-input>
+            </td>
+            <td>
+                <text-input
+                label="Phone Number" type="text" [control]="this.fc['phone']" [showErrorWhen]="isSubmitted"
+                ></text-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <text-input
+              label="Address" type="text" [control]="this.fc['address']" [showErrorWhen]="isSubmitted"
+              ></text-input>
+            </td>
+            <td>
+                <text-input
+                label="DOB" type="Date" [control]="this.fc['dateofbirth']" [showErrorWhen]="isSubmitted"
+                ></text-input>
+            </td>
+            <td>
+                <text-input
+                label="Phone Number" type="text" [control]="this.fc['phone']" [showErrorWhen]="isSubmitted" 
+                ></text-input>
+            </td>
+          </tr>

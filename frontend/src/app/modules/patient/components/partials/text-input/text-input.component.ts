@@ -14,7 +14,7 @@ export class TextInputComponent {
   control!:AbstractControl;
 
   @Input()
-  type: 'email' | 'text' | 'password' = 'text'
+  type: 'email' | 'text' | 'password' | 'Date' | 'radio' | 'tel' = 'text'
 
   @Input()
   showErrorWhen:boolean=true;

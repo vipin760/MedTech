@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AppTitleComponent } from './components/partials/app-title/app-title.component';
 import { RegisterComponent } from './components/pages/register/register.component';
+import { InputSelectorComponent } from './components/partials/input-selector/input-selector.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { RegisterComponent } from './components/pages/register/register.componen
     InputValidatorComponent,
     TextInputComponent,
     AppTitleComponent,
-    RegisterComponent
+    RegisterComponent,
+    InputSelectorComponent
   ],
   imports: [
     CommonModule,

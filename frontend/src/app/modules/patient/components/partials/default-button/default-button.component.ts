@@ -13,6 +13,9 @@ export class DefaultButtonComponent {
   @Input()
   text:string="Submit"
 
+  @Input()
+  bgColor:string="#8dc63f"
+
   @Output()
   onClick = new EventEmitter()
 

@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { PatientModule } from '../patient/patient.module';
 import { MatCardModule } from '@angular/material/card';
 import { AddDoctorComponent } from './components/pages/add-doctor/add-doctor.component';
+import { ListDoctorsComponent } from './components/pages/list-doctors/list-doctors.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { AddDoctorComponent } from './components/pages/add-doctor/add-doctor.com
     TextInputComponent,
     DefaultButtonComponent,
     AppTitleComponent,
-    AddDoctorComponent
+    AddDoctorComponent,
+    ListDoctorsComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,9 @@ import { AddDoctorComponent } from './components/pages/add-doctor/add-doctor.com
     ReactiveFormsModule,
     HttpClientModule,
     MatCardModule,
-    PatientModule
+    PatientModule,
+    MatTableModule,
+     MatPaginatorModule
   ]
 })
 export class AdminModule { }
