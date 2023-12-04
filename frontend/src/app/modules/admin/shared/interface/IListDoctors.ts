@@ -4,4 +4,12 @@ export interface IListDoctors{
     address:string;
     isBlocked:boolean;
     phone:number;
+    data?:{
+        
+    }
+}
+
+export interface IListDoctorsResponse{
+    data:IListDoctors[],
+    message:string;
 }

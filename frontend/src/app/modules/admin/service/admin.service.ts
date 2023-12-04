@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IDoctor } from '../../doctor/shared/interface.ts/Doctor.interface';
 import { IPostDoctor } from '../shared/interface/IDoctor';
 import { IListDoctors } from '../shared/interface/IListDoctors';
+import { IDoctor_Block_unblock } from '../shared/interface/IDoctorBlock_unblock';
 
 const ADMIN_KEY="Admin"
 @Injectable({
@@ -15,8 +16,8 @@ const ADMIN_KEY="Admin"
 })
 export class AdminService {
   private adminSubject = new BehaviorSubject<AdminLogin>(this.GetAdminFromLocalStorage())
-  private isBlockedSubject = new BehaviorSubject<boolean>(false)
-  isBlocked$ = this.isBlockedSubject.asObservable();
+  private currentDoctorsSubject = new BehaviorSubject<IListDoctors|null>(null)
+  currentDoctorsList$ = this.currentDoctorsSubject.asObservable()
   public adminObservable!:Observable<AdminLogin>;
 
   constructor( 
@@ -80,40 +81,83 @@ return this.http.post<IPostDoctor>(ADMIN_ADD_DOCTOR_URL,doctorData).pipe(
 }
  
 ////////////////////////////////////////////////////////////////////
-listAllDoctors():Observable<any>{
-  return this.http.get(ADMIN_GET_ALL_DOCTORS_URL)
+listAllDoctors():Observable<IListDoctors[]>{
+  return this.http.get<IListDoctors[]>(ADMIN_GET_ALL_DOCTORS_URL)
 }
 ////////////////////////////////////////////////////////////////////
-blockDoctor(id:string):Observable<string>{
-  console.log("working",id)
- return this.http.put<string>(ADMIN_BLOCK_DOCTORS_URL,{id}).pipe(
-    tap({
-      next:(doctor)=>{
-        console.log("doctor",doctor);
-        this.toastrService.success(`${doctor}`, 'Success')
-      },
-      error:(errorRes)=>{
-        this.toastrService.error(`${errorRes.message}`,'Failed')
-      }
-    })
-  )
-}
+// blockDoctor(id:string):Observable<IDoctor_Block_unblock>{
+//   console.log("working",id)
+//  return this.http.put<IDoctor_Block_unblock>(ADMIN_BLOCK_DOCTORS_URL,{id}).pipe(
+//     tap({
+//       next:(doctor)=>{
+//         console.log("doctor",doctor);
+//         this.toastrService.success(`${doctor.message}`, 'Success')
+//         const updateList=this.doctorsListSubject.value.map(doctor=>{
+//           if(doctor.id === id){
+//             doctor.isBlocked = true
+//           }
+//           return doctor
+//         })
+//         this.doctorsListSubject.next(updateList)
+//       },
+//       error:(errorRes)=>{
+//         this.toastrService.error(`${errorRes.error.message}`,'Failed')
+//       }
+//     })
+//   )
+// }
 
 //////////////////////////////////////////////////////////////////// 
-unblockDoctor(id:string):Observable<string>{
-  console.log("unblock",id)
- return this.http.put<string>(ADMIN_UNBLOCK_DOCTORS_URL,{id}).pipe(
+// unblockDoctor(id:string):Observable<IDoctor_Block_unblock>{
+//   console.log("unblock",id)
+//  return this.http.put<IDoctor_Block_unblock>(ADMIN_UNBLOCK_DOCTORS_URL,{id}).pipe(
+//     tap({
+//       next:(doctor)=>{
+//         this.toastrService.success(`${doctor.message}`, 'Success')
+//         const updateList = this.doctorsListSubject.value.map(doctor=>{
+//           if(doctor.id === id){
+//             doctor.isBlocked = false
+//           }
+//           return doctor
+//         })
+//         this.doctorsListSubject.next(updateList)
+//       },
+//       error:(errorRes)=>{
+//         this.toastrService.error(`${errorRes.error.message}`,'Failed')
+//       }
+//     })
+//   )
+// }
+
+////////////////////////////////////////////////////////////////////
+
+toggleStatus(id:string):Observable<IDoctor_Block_unblock>{
+  const currentDoctor = this.currentDoctorsSubject.value
+  const isBlocked = currentDoctor ? currentDoctor.isBlocked:false;
+
+  return this.http.patch<IDoctor_Block_unblock>(
+    isBlocked ? ADMIN_UNBLOCK_DOCTORS_URL : ADMIN_BLOCK_DOCTORS_URL,{id}
+  ).pipe(
     tap({
-      next:(doctor)=>{
-        this.toastrService.success(`${doctor}`, 'Success')
+      next:(doctors)=>{
+        this.toastrService.success(`${doctors.message}`,'Success')
+        if(currentDoctor){
+          currentDoctor.isBlocked = !isBlocked
+          this.currentDoctorsSubject.next({...currentDoctor})
+        }
       },
-      error:(errorRes)=>{
-        this.toastrService.error(`${errorRes.message}`,'Failed')
+      error:(errorRes) => {
+        this.toastrService.error(`${errorRes.error.message}`,"Failed")
       }
     })
   )
+
 }
 
+
 ////////////////////////////////////////////////////////////////////
+
+
+
 
 }

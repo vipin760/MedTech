@@ -36,8 +36,10 @@ export class ListDoctorsComponent implements AfterViewInit ,OnInit, OnChanges{
   ///////////////////////////////////////////////////////////////////////////
   getAllDoctors(){
     this.adminService.listAllDoctors().subscribe(data=>{
-      this.LIST_DOCTORS = data.data
+      console.log("data",data)
+      this.LIST_DOCTORS = data
       this.dataSource.data = this.LIST_DOCTORS
+      console.log("this.dataSource.data",this.dataSource.data)
     })
   }
 
@@ -49,22 +51,28 @@ export class ListDoctorsComponent implements AfterViewInit ,OnInit, OnChanges{
   }
 ///////////////////////////////////////////////////////////////////////////
 
-blockDoctor(id:string){
+// blockDoctor(id:string){
 
-  this.adminService.blockDoctor(id).subscribe(()=>{
-     this.router.navigateByUrl("/admin/list-doctor")
+//   this.adminService.blockDoctor(id).subscribe(()=>{
+//      this.router.navigateByUrl("/admin/list-doctor")
+
+//   })
+// }
+
+// ///////////////////////////////////////////////////////////////////////////
+// unblockDoctor(id:string){
+//   this.adminService.unblockDoctor(id).subscribe(()=>{
+//      this.router.navigateByUrl("/admin/list-doctor")
+//   })
+// }
+
+// ///////////////////////////////////////////////////////////////////////////
+
+toggleBlockeStatus(id:string){
+  this.adminService.toggleStatus(id).subscribe(()=>{
 
   })
 }
-
-///////////////////////////////////////////////////////////////////////////
-unblockDoctor(id:string){
-  this.adminService.unblockDoctor(id).subscribe(()=>{
-     this.router.navigateByUrl("/admin/list-doctor")
-  })
-}
-
-  
 }
 
 
