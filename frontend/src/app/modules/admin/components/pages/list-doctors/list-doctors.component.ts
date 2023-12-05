@@ -25,21 +25,17 @@ export class ListDoctorsComponent implements AfterViewInit ,OnInit, OnChanges{
 
   ngOnInit(): void {
   this.getAllDoctors()
-  // this.activateRoute.snapshot.queryParams['returnUrl']
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.getAllDoctors()
-    // this.activateRoute.snapshot.queryParams['returnUrl']
   }
 
   ///////////////////////////////////////////////////////////////////////////
   getAllDoctors(){
     this.adminService.listAllDoctors().subscribe(data=>{
-      console.log("data",data)
-      this.LIST_DOCTORS = data
+      this.LIST_DOCTORS = data.data
       this.dataSource.data = this.LIST_DOCTORS
-      console.log("this.dataSource.data",this.dataSource.data)
     })
   }
 
@@ -49,30 +45,27 @@ export class ListDoctorsComponent implements AfterViewInit ,OnInit, OnChanges{
   ngAfterViewInit(){
     this.dataSource.paginator = this.paginator
   }
-///////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
-// blockDoctor(id:string){
-
-//   this.adminService.blockDoctor(id).subscribe(()=>{
-//      this.router.navigateByUrl("/admin/list-doctor")
-
-//   })
-// }
-
-// ///////////////////////////////////////////////////////////////////////////
-// unblockDoctor(id:string){
-//   this.adminService.unblockDoctor(id).subscribe(()=>{
-//      this.router.navigateByUrl("/admin/list-doctor")
-//   })
-// }
-
-// ///////////////////////////////////////////////////////////////////////////
-
-toggleBlockeStatus(id:string){
-  this.adminService.toggleStatus(id).subscribe(()=>{
-
+toggleBlockeStatus(id:string,currentDoctor:boolean){
+  this.adminService.toggleStatus(id,currentDoctor).subscribe((data)=>{
+      this.getAllDoctors()
   })
 }
+
+///////////////////////////////////////////////////////////////////////////////
+trackByFun(index:number,item:IListDoctors):string{ 
+return item._id || ''
+}
+
+//////////////////////////////////////////////////////////////////////////////// 
+updateDoctor(id:string){
+  this.router.navigateByUrl("")
+}
+
+//////////////////////////////////////////////////////////////////////////////// 
+
+
 }
 
 

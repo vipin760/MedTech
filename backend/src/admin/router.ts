@@ -120,12 +120,10 @@ router.get("/list-doctors",asyncHandler( async(req,res)=>{
 }))
 ////////////////////////////////////////////////////////////////////////////
 
-router.put("/unblock-doctor",asyncHandler( async(req,res)=>{
-  console.log("block user");
-  
+router.patch("/unblock-doctor",asyncHandler( async(req,res)=>{
   try {
-    await DoctorModel.updateOne({_id:req.body.id},{$set:{isBlocked:true}}).then((data)=>{
-      res.status(200).send({data:null, message:"unblocked"})
+    await DoctorModel.updateOne({_id:req.body.id},{$set:{isBlocked:false}}).then((data)=>{
+      res.status(200).send({data:data, message:"unblocked"})
     })
     
   } catch (error) {
@@ -133,11 +131,11 @@ router.put("/unblock-doctor",asyncHandler( async(req,res)=>{
   }
 }))
 ////////////////////////////////////////////////////////////////////////////
-router.put("/block-doctor",asyncHandler( async(req,res)=>{
-  console.log("working unblock")
+router.patch("/block-doctor",asyncHandler( async(req,res)=>{
   try { 
-    await DoctorModel.updateOne({_id:req.body.id},{$set:{isBlocked:false}}).then((data)=>{
-      res.status(200).send({data:null, message:"blocked"})
+    const us = await DoctorModel.findOne({_id:req.body.id}) 
+    await DoctorModel.updateOne({_id:req.body.id},{$set:{isBlocked:true}}).then((data)=>{
+      res.status(200).send({data:data, message:"blocked"}) 
     })
     
   } catch (error) {

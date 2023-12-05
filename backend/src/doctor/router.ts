@@ -14,7 +14,6 @@ router.post("/login",asyncHandler(async(req,res)=>{
     const {email, password} = req.body
     const doctorData = await DoctorModel.findOne({email:email})
     if(doctorData && await bcrypt.compare(password, doctorData.password)){
-        console.log(doctorData.name,".........")
         if(doctorData.verified){
             res.status(200).send(generateToken(doctorData))
         }else{

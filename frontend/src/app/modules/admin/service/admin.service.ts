@@ -81,59 +81,15 @@ return this.http.post<IPostDoctor>(ADMIN_ADD_DOCTOR_URL,doctorData).pipe(
 }
  
 ////////////////////////////////////////////////////////////////////
-listAllDoctors():Observable<IListDoctors[]>{
+listAllDoctors():Observable<any>{
   return this.http.get<IListDoctors[]>(ADMIN_GET_ALL_DOCTORS_URL)
 }
-////////////////////////////////////////////////////////////////////
-// blockDoctor(id:string):Observable<IDoctor_Block_unblock>{
-//   console.log("working",id)
-//  return this.http.put<IDoctor_Block_unblock>(ADMIN_BLOCK_DOCTORS_URL,{id}).pipe(
-//     tap({
-//       next:(doctor)=>{
-//         console.log("doctor",doctor);
-//         this.toastrService.success(`${doctor.message}`, 'Success')
-//         const updateList=this.doctorsListSubject.value.map(doctor=>{
-//           if(doctor.id === id){
-//             doctor.isBlocked = true
-//           }
-//           return doctor
-//         })
-//         this.doctorsListSubject.next(updateList)
-//       },
-//       error:(errorRes)=>{
-//         this.toastrService.error(`${errorRes.error.message}`,'Failed')
-//       }
-//     })
-//   )
-// }
-
-//////////////////////////////////////////////////////////////////// 
-// unblockDoctor(id:string):Observable<IDoctor_Block_unblock>{
-//   console.log("unblock",id)
-//  return this.http.put<IDoctor_Block_unblock>(ADMIN_UNBLOCK_DOCTORS_URL,{id}).pipe(
-//     tap({
-//       next:(doctor)=>{
-//         this.toastrService.success(`${doctor.message}`, 'Success')
-//         const updateList = this.doctorsListSubject.value.map(doctor=>{
-//           if(doctor.id === id){
-//             doctor.isBlocked = false
-//           }
-//           return doctor
-//         })
-//         this.doctorsListSubject.next(updateList)
-//       },
-//       error:(errorRes)=>{
-//         this.toastrService.error(`${errorRes.error.message}`,'Failed')
-//       }
-//     })
-//   )
-// }
 
 ////////////////////////////////////////////////////////////////////
 
-toggleStatus(id:string):Observable<IDoctor_Block_unblock>{
-  const currentDoctor = this.currentDoctorsSubject.value
-  const isBlocked = currentDoctor ? currentDoctor.isBlocked:false;
+toggleStatus(id:string,currentDoctorStatus:boolean):Observable<IDoctor_Block_unblock>{
+  const currentDoctor = currentDoctorStatus
+  const isBlocked = currentDoctorStatus
 
   return this.http.patch<IDoctor_Block_unblock>(
     isBlocked ? ADMIN_UNBLOCK_DOCTORS_URL : ADMIN_BLOCK_DOCTORS_URL,{id}
@@ -141,10 +97,7 @@ toggleStatus(id:string):Observable<IDoctor_Block_unblock>{
     tap({
       next:(doctors)=>{
         this.toastrService.success(`${doctors.message}`,'Success')
-        if(currentDoctor){
-          currentDoctor.isBlocked = !isBlocked
-          this.currentDoctorsSubject.next({...currentDoctor})
-        }
+       
       },
       error:(errorRes) => {
         this.toastrService.error(`${errorRes.error.message}`,"Failed")

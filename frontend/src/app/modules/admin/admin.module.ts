@@ -20,6 +20,7 @@ import { AddDoctorComponent } from './components/pages/add-doctor/add-doctor.com
 import { ListDoctorsComponent } from './components/pages/list-doctors/list-doctors.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { UpdateDoctorsComponent } from './components/pages/update-doctors/update-doctors.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     DefaultButtonComponent,
     AppTitleComponent,
     AddDoctorComponent,
-    ListDoctorsComponent
+    ListDoctorsComponent,
+    UpdateDoctorsComponent
   ],
   imports: [
     CommonModule,

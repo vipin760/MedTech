@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" [trackBy]="trackByFun" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
         <td mat-cell *matCellDef="let element">{{element.name}}</td>
@@ -20,11 +20,13 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let element" > 
+          <default-button text="unblock" bgColor="red" *ngIf="element.isBlocked" (onClick)="toggleBlockeStatus(element.id,element.isBlocked)"></default-button>
+          <default-button text="block" *ngIf="!element.isBlocked" (onClick)="toggleBlockeStatus(element.id,element.isBlocked)"></default-button>
           <!-- <default-button text="unblock" bgColor="red" *ngIf="element.isBlocked" (onClick)="blockDoctor(element.id)"></default-button>
           <default-button text="block" *ngIf="!element.isBlocked" (onClick)="unblockDoctor(element.id)"></default-button> -->
-          <default-button [text]="element.isBlocked ? 'unblock' : 'block'" (onClick)="toggleBlockeStatus(element.id)" 
-          ></default-button>
-        <default-button text="update" ></default-button>
+          <!-- <default-button [text]="element.isBlocked ? 'unblock' : 'block'" (onClick)="toggleBlockeStatus(element.id,element.isBlocked)" 
+          ></default-button> -->
+        <default-button text="update"  ></default-button>
          </td>
       </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
