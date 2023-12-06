@@ -12,7 +12,7 @@ import { InputContainerComponent } from './components/partials/input-container/i
 import { TextInputComponent } from './components/partials/text-input/text-input.component';
 import { DefaultButtonComponent } from './components/partials/default-button/default-button.component';
 import { AppTitleComponent } from './components/partials/app-title/app-title.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PatientModule } from '../patient/patient.module';
 import { MatCardModule } from '@angular/material/card';
@@ -21,6 +21,11 @@ import { ListDoctorsComponent } from './components/pages/list-doctors/list-docto
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { UpdateDoctorsComponent } from './components/pages/update-doctors/update-doctors.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { ListPatientsComponent } from './components/pages/list-patients/list-patients.component';
 
 
 @NgModule({
@@ -37,7 +42,8 @@ import { UpdateDoctorsComponent } from './components/pages/update-doctors/update
     AppTitleComponent,
     AddDoctorComponent,
     ListDoctorsComponent,
-    UpdateDoctorsComponent
+    UpdateDoctorsComponent,
+    ListPatientsComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +53,12 @@ import { UpdateDoctorsComponent } from './components/pages/update-doctors/update
     MatCardModule,
     PatientModule,
     MatTableModule,
-     MatPaginatorModule
+     MatPaginatorModule,
+     MatSortModule,
+     MatFormFieldModule, 
+     MatSelectModule,
+     MatInputModule,
+     FormsModule
   ]
 })
 export class AdminModule { }

@@ -1,68 +1,42 @@
-<div class="table-responsive">
-  <table mat-table [dataSource]="dataSource" [trackBy]="trackByFun" class="mat-elevation-z8">
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
-    <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>email</th>
-        <td mat-cell *matCellDef="let element">{{element.email}}</td>
-    </ng-container>
-    <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef> Phone </th>
-        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+<mat-card>
+<mat-card-header>
+  <mat-form-field>
+    <input matInput placeholder="search....." (keyup)="filterChange($event)"> 
+  </mat-form-field>
+</mat-card-header>  
+<mat-card-content>
+  <div class="table-responsive">
+    <table matSort mat-table [dataSource]="dataSource" [trackBy]="trackByFun" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
       </ng-container>
-    
-      <ng-container matColumnDef="address">
-        <th mat-header-cell *matHeaderCellDef> Address </th>
-        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      <ng-container matColumnDef="email">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>email</th>
+          <td mat-cell *matCellDef="let element">{{element.email}}</td>
       </ng-container>
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let element" > 
-          <default-button text="unblock" bgColor="red" *ngIf="element.isBlocked" (onClick)="toggleBlockeStatus(element.id,element.isBlocked)"></default-button>
-          <default-button text="block" *ngIf="!element.isBlocked" (onClick)="toggleBlockeStatus(element.id,element.isBlocked)"></default-button>
-          <!-- <default-button text="unblock" bgColor="red" *ngIf="element.isBlocked" (onClick)="blockDoctor(element.id)"></default-button>
-          <default-button text="block" *ngIf="!element.isBlocked" (onClick)="unblockDoctor(element.id)"></default-button> -->
-          <!-- <default-button [text]="element.isBlocked ? 'unblock' : 'block'" (onClick)="toggleBlockeStatus(element.id,element.isBlocked)" 
-          ></default-button> -->
-        <default-button text="update"  ></default-button>
-         </td>
-      </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table> 
-  <mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButtons  aria-label="select page of periodic elements"></mat-paginator>
-</div>
+      <ng-container matColumnDef="phone">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef> Phone </th>
+          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="address">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element" > 
+            <default-button text="unblock" bgColor="red" *ngIf="element.isBlocked" (onClick)="toggleBlockeStatus(element.id,element.isBlocked)"></default-button>
+            <default-button text="block" *ngIf="!element.isBlocked" (onClick)="toggleBlockeStatus(element.id,element.isBlocked)"></default-button>
+          <default-button text="update" (onClick)="updateDoctor(element.id)" ></default-button>
+           </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> 
+    <mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButtons  aria-label="select page of periodic elements"></mat-paginator>
+  </div>
 
-<!-- <table>
-  <tr>
-    <td>name</td><td>email</td><td>phone</td><td>address</td>
-  </tr>
-  <tr *ngFor="let doctor of LIST_DOCTORS"><td>{{doctor.name}}</td><td>{{doctor.email}}</td><td>{{doctor.phone}}</td><td>{{doctor.address}}</td></tr>
-</table> -->
-
-
-
-<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef>No:</th>
-        <td mat-cell *matCellDef="let element">{{element.position}}</td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
-    <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-      </ng-container>
-    
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table> 
-<mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButtons  aria-label="select page of periodic elements"></mat-paginator> -->
+</mat-card-content>
+</mat-card>

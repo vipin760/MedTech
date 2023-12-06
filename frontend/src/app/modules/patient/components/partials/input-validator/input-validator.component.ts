@@ -25,15 +25,12 @@ showErrorWhen:boolean=true
 
 checkValidators(){
   const errors =  this.control.errors
-  console.log("errors",errors)
   if(!errors){
     this.showErrorMessages = []
     return
   }
   const errorKey = Object.keys(errors)
-  console.log("errorKey",errorKey)
   this.showErrorMessages = errorKey.map(key => ERROR_MESSAGE[key] )
-  console.log("this.showErrorMessages",this.showErrorMessages);
   
 }
 ngOnInit(): void {

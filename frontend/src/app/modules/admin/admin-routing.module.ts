@@ -13,6 +13,7 @@ const routes: Routes = [{path:'',component:AdminComponent, children:[
   {path:'add-doctor',component:AddDoctorComponent},
   {path:'list-doctor', component:ListDoctorsComponent},
   {path:'update-doctor', component:UpdateDoctorsComponent},
+  {path:'update-doctor/:id', component:UpdateDoctorsComponent},
   {path:'', redirectTo:'/admin/login', pathMatch:'full'},
 ]}];
 

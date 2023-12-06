@@ -1,8 +1,6 @@
 <div class="add-doctor">
   <mat-card>
-    <mat-card-header>
-     
-    </mat-card-header>
+    <mat-card-header> </mat-card-header>
     <mat-card-content>
       <form [formGroup]="addDoctor" (ngSubmit)="submit()">
         <div class="col-md-12">
@@ -12,43 +10,64 @@
           <div class="row mt-3">
             <div class="col-md-3 col-sm-4 col-xl-2 col-xxl-12 text-center">
               <text-input
-              label="Full Name" type="text" [control]="this.fc['name']" [showErrorWhen]="isSubmitted" 
-              ></text-input>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xl-2 col-xxl-12 text-center">
-              <text-input 
-                label="Email" type="email" [control]="this.fc['email']" [showErrorWhen]="isSubmitted"
-                ></text-input>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xl-2 col-xxl-12 text-center">
-              <text-input
-              label="Phone Number" type="tel" [control]="this.fc['phone']" [showErrorWhen]="isSubmitted"
+                label="Full Name"
+                type="text"
+                [control]="this.fc['name']"
+                [showErrorWhen]="isSubmitted"
               ></text-input>
             </div>
             <div class="col-md-3 col-sm-4 col-xl-2 col-xxl-12 text-center">
               <text-input
-              label="Address" type="text" [control]="this.fc['address']" [showErrorWhen]="isSubmitted"
+                label="Email"
+                type="email"
+                [control]="this.fc['email']"
+                [showErrorWhen]="isSubmitted"
               ></text-input>
             </div>
             <div class="col-md-3 col-sm-4 col-xl-2 col-xxl-12 text-center">
               <text-input
-              label="Password" type="password" [control]="this.fc['password']" [showErrorWhen]="isSubmitted"
+                label="Phone Number"
+                type="tel"
+                [control]="this.fc['phone']"
+                [showErrorWhen]="isSubmitted"
               ></text-input>
             </div>
             <div class="col-md-3 col-sm-4 col-xl-2 col-xxl-12 text-center">
-             <table><tr><td *ngFor="let gender of selectedGender"> <input type="radio" formControlName="gender" value="{{gender.value}}">
-              <label for="">{{gender.label}}</label></td></tr></table>
+              <text-input
+                label="Address"
+                type="text"
+                [control]="this.fc['address']"
+                [showErrorWhen]="isSubmitted"
+              ></text-input>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xl-2 col-xxl-12 text-center">
+              <text-input
+                label="Password"
+                type="password"
+                [control]="this.fc['password']"
+                [showErrorWhen]="isSubmitted"
+              ></text-input>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xl-2 col-xxl-12 text-center">
+              <table class="">
+                <tr>
+                  <td *ngFor="let gender of selectedGender">
+                    <input
+                      type="radio"
+                      formControlName="gender"
+                      value="{{ gender.value }}"
+                    />
+                    <label for="">{{ gender.label }}</label>
+                  </td>
+                </tr>
+              </table>
             </div>
             <div class="col-12">
-              <default-button
-              type="submit" text="Add doctor"
-              ></default-button>
+              <default-button type="submit" text="Add doctor"></default-button>
             </div>
           </div>
         </div>
-        </form>
+      </form>
     </mat-card-content>
   </mat-card>
 </div>
-
-

@@ -143,4 +143,39 @@ router.patch("/block-doctor",asyncHandler( async(req,res)=>{
   }
 }))
 ////////////////////////////////////////////////////////////////////////////
+
+router.get("/fetch-doctor/:id",asyncHandler( async(req,res)=>{
+  try {
+    console.log(req.params.id,typeof req.params.id)
+    const doctoData = await DoctorModel.findOne({_id:req.params.id})
+    if(doctoData){
+      res.status(200).send({data:doctoData, message:"doctor data fetch successfully"})
+    }else{
+      res.status(400).send({data:null,message:"cannot load data"})
+    }
+  } catch (error) {
+    res.status(500).send({data:null,message:"internal server down"})
+  }
+}))
+
+////////////////////////////////////////////////////////////////////////////
+
+router.put("/update-doctor/:id", asyncHandler( async(req,res)=>{
+  try {
+    const { name, email, address, phone } = req.body
+    const updateDoctor={
+      name,email: email.toLowerCase(),address,phone
+    }
+   await DoctorModel.updateOne({_id:req.params.id},{$set:updateDoctor}).then(data=>{
+    res.status(200).send({data:null,message:"doctor data updated successfully"})
+   }).catch(Error=>{
+    res.status(401).send({data:null, message:`doctor data cannot updated ${Error.message}`})
+   })
+  } catch (error) {
+    res.status(200).send({data:null, message:"internal server down"})
+  }
+}))
+
+////////////////////////////////////////////////////////////////////////////
+
 export default router;

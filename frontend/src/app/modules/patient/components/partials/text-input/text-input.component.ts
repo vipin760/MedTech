@@ -19,6 +19,9 @@ export class TextInputComponent {
   @Input()
   showErrorWhen:boolean=true;
 
+  @Input()
+  header!:'email' | 'text' | 'password' | 'Date' | 'radio' | 'tel'
+
   get formControl(){
     return this.control as FormControl
   }
