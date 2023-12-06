@@ -6,6 +6,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { AddDoctorComponent } from './components/pages/add-doctor/add-doctor.component';
 import { ListDoctorsComponent } from './components/pages/list-doctors/list-doctors.component';
 import { UpdateDoctorsComponent } from './components/pages/update-doctors/update-doctors.component';
+import { ListPatientsComponent } from './components/pages/list-patients/list-patients.component';
 
 const routes: Routes = [{path:'',component:AdminComponent, children:[
   {path:'home', component:HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [{path:'',component:AdminComponent, children:[
   {path:'list-doctor', component:ListDoctorsComponent},
   {path:'update-doctor', component:UpdateDoctorsComponent},
   {path:'update-doctor/:id', component:UpdateDoctorsComponent},
+  {path:'list-patients', component:ListPatientsComponent },
   {path:'', redirectTo:'/admin/login', pathMatch:'full'},
 ]}];
 
