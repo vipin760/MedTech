@@ -14,4 +14,6 @@
 
  export const ADMIN_UPDATE_DOCTOR_URL = BASE_URL+"/update-doctor"
 
+ export const ADMIN_FETCH_PATIENTS_URL = BASE_URL+"/fetch-patients" 
+
 

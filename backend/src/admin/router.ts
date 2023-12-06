@@ -178,4 +178,19 @@ router.put("/update-doctor/:id", asyncHandler( async(req,res)=>{
 
 ////////////////////////////////////////////////////////////////////////////
 
+router.get("/fetch-patients", asyncHandler( async(req,res)=>{
+  try {
+    const patientData = await DoctorModel.find()
+  if(patientData){
+    res.status(200).send({data:patientData, message:"patients data fetched successfully"})
+  }else{
+    res.status(401).send({data:null, message:"patient data cannot fetch"})
+  }
+  } catch (error) {
+   res.status(500).send({data:null, message:"internal server dowwn"}) 
+  }
+}))
+
+////////////////////////////////////////////////////////////////////////////
+
 export default router;
