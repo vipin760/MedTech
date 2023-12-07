@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { PatientModule } from '../patient/patient.module';
+import { ListPatientsComponent } from './components/pages/list-patients/list-patients.component';
+import { UpdatePatientsComponent } from './components/pages/update-patients/update-patients.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { PatientModule } from '../patient/patient.module';
     InputContainerComponent,
     InputValidatorComponent,
     DefaultButtonComponent,
-    AppTitleComponent
+    AppTitleComponent,
+    ListPatientsComponent,
+    UpdatePatientsComponent
   ],
   imports: [
     CommonModule,

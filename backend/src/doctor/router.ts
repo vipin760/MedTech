@@ -7,6 +7,7 @@ import { DoctorLogin } from "../shared/model/doctor.model";
 import asyncHandler from "express-async-handler";
 import { DoctorModel } from "./model";
 import bcrypt from 'bcryptjs'
+import { PatientModel } from "../patients/model";
 const router = Router()
 
 ////////////////////////////////////////////////////////////
@@ -30,7 +31,21 @@ const generateToken=(doctorData:IDoctorLogin)=>{
     return doctorData
 }
 
-///////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+router.get("/fetch-patients", asyncHandler (async(req,res)=>{
+    try {
+        const patientsData = await PatientModel.find()
+        if(patientsData){
+            res.status(200).send({data:patientsData, message:"data fetch successfully"})
+        }else{
+            res.status(401).send({data:null, message:"oops something went wrong....!"})
+        }
+        
+    } catch (error) {
+        res.status(500).send({data:null, message:"internal server down"})
+    }
+}))
 
 
 

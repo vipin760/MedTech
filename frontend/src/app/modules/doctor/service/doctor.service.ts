@@ -4,6 +4,8 @@ import { Doctor } from '../shared/model/Doctor.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IDoctor } from '../shared/interface.ts/Doctor.interface';
 import { ToastrService } from 'ngx-toastr';
+import { IListPatient } from '../shared/interface.ts/IListPatient';
+import { DOCTOR_GET_ALL_PATIENTS_URL } from '../shared/constants/urls';
 
 const DOCTOR_KEY='Doctor'
 
@@ -61,5 +63,13 @@ private GetDoctorFromLocalStorage():Doctor{
 }
 /////////////////////////////////////////////////////////////////////////////////////
 
+fetchPatients():Observable<any>{
+  return this.http.get<IListPatient>(DOCTOR_GET_ALL_PATIENTS_URL)
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////
 
 }
