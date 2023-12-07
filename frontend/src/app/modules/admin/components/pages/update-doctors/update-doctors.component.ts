@@ -17,7 +17,7 @@ export class UpdateDoctorsComponent implements OnInit {
   LIST_DOCTOR_UPDATE!:IUpdateDoctor;
   UPDATE_FORM!:FormGroup;
 
-  constructor(private router : Router,
+  constructor(private router : Router, 
     private activateRoute: ActivatedRoute,
     private adminService: AdminService, 
     private fb:FormBuilder,
@@ -42,7 +42,7 @@ update(){
   this.isSubmitted=true
    if(this.UPDATE_FORM.invalid)return; 
    this.adminService.updateData({name:this.fc['name'].value, email:this.fc['email'].value, phone:this.fc['phone'].value, address:this.fc['address'].value},this.doctorId). subscribe(()=>{
-
+    this.router.navigateByUrl('admin/list-patient')
    })
 
 }

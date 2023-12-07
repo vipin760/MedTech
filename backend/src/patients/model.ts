@@ -8,6 +8,7 @@ export const UserSchema = new Schema<IPatient>({
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     address: {type: String, required: true},
+    phone:{type:String, required:true},
     isAdmin: {type: Boolean, default:false},
     isPatient: {type: Boolean, default:false},
     isDoctor: {type: Boolean, default:false}, 

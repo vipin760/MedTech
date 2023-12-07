@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ListPatientsComponent } from './components/pages/list-patients/list-patients.component';
+import { UpdatePatientsComponent } from './components/pages/update-patients/update-patients.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ListPatientsComponent } from './components/pages/list-patients/list-pat
     AddDoctorComponent,
     ListDoctorsComponent,
     UpdateDoctorsComponent,
-    ListPatientsComponent
+    ListPatientsComponent,
+    UpdatePatientsComponent
   ],
   imports: [
     CommonModule,

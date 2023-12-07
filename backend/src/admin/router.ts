@@ -9,6 +9,8 @@ import { IPostDoctor } from "./shared/interface/IPostdoctor";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
 import cookie from "cookie-parser";
+import mongoose, { ObjectId, Types } from "mongoose";
+import { PatientModel } from "../patients/model";
 
 const router = Router();
 /////////////////////////////////////////////////////////////////////////////
@@ -133,7 +135,6 @@ router.patch("/unblock-doctor",asyncHandler( async(req,res)=>{
 ////////////////////////////////////////////////////////////////////////////
 router.patch("/block-doctor",asyncHandler( async(req,res)=>{
   try { 
-    const us = await DoctorModel.findOne({_id:req.body.id}) 
     await DoctorModel.updateOne({_id:req.body.id},{$set:{isBlocked:true}}).then((data)=>{
       res.status(200).send({data:data, message:"blocked"}) 
     })
@@ -146,7 +147,6 @@ router.patch("/block-doctor",asyncHandler( async(req,res)=>{
 
 router.get("/fetch-doctor/:id",asyncHandler( async(req,res)=>{
   try {
-    console.log(req.params.id,typeof req.params.id)
     const doctoData = await DoctorModel.findOne({_id:req.params.id})
     if(doctoData){
       res.status(200).send({data:doctoData, message:"doctor data fetch successfully"})
@@ -180,7 +180,7 @@ router.put("/update-doctor/:id", asyncHandler( async(req,res)=>{
 
 router.get("/fetch-patients", asyncHandler( async(req,res)=>{
   try {
-    const patientData = await DoctorModel.find()
+    const patientData = await PatientModel.find()
   if(patientData){
     res.status(200).send({data:patientData, message:"patients data fetched successfully"})
   }else{
@@ -192,5 +192,77 @@ router.get("/fetch-patients", asyncHandler( async(req,res)=>{
 }))
 
 ////////////////////////////////////////////////////////////////////////////
+
+router.patch("/block-patient", asyncHandler ( async (req,res)=>{
+  try {
+    console.log(req.body.id)
+    await PatientModel.updateOne({_id:req.body.id},{$set:{isBlocked:true}}).then((data)=>{
+      if(data.modifiedCount===1){
+        res.status(200).send({data:null,message:"patients blocked ....!"})
+      }else{
+        res.status(401).send({data:null,message:"oops something wrong1.....!"})
+      }
+    }).catch((error)=>{
+      res.status(401).send({data:null,message:"oops something wrong2.....!"})
+    })
+  } catch (error) {
+    res.status(500).send({data:null, message:"internal server down"})
+  }
+}))
+
+////////////////////////////////////////////////////////////////////////////
+
+router.patch("/unblock-patient", asyncHandler ( async (req,res)=>{
+  try {
+    await PatientModel.updateOne({_id: req.body.id},{$set:{isBlocked:false}}).then((data)=>{
+     
+      if(data.modifiedCount===1){
+        res.status(200).send({data:null,message:"patients unblocked ....!"})
+      }else{
+        res.status(401).send({data:null,message:"oops something wrong11.....!"})
+      }
+    }).catch((error)=>{
+      res.status(401).send({data:null,message:"oops something wrong22.....!"})
+    })
+    
+  } catch (error) {
+    res.status(500).send({data:null, message:"internal server down"})
+  }
+}))
+
+////////////////////////////////////////////////////////////////////////////
+
+router.get("/fetch-patient/:id", asyncHandler (async (req,res)=>{
+  try {
+    const patientData = await PatientModel.findOne({_id:req.params.id})
+    if(patientData){
+      res.status(200).send({data:patientData, message:"patient data fetched success"})
+    }else{
+      res.status(401).send({data:null, message:"oops something wrong...!!!"})
+    }
+    
+  } catch (error) {
+    res.status(500).send({data:null, message:"internal server down"})
+  }
+}))
+
+////////////////////////////////////////////////////////////////////////////
+router.put("/update-patient/:id", asyncHandler (async (req,res)=>{
+  try {
+    console.log("update ")
+    const {name,email,address,phone} = req.body
+    const patientData = {
+      name, email: email.toLowerCase(), address,phone
+    }
+    await PatientModel.updateOne({_id:req.params.id},{$set:patientData}).then(data=>{
+      res.status(200).send({data:null, message:"updated successfully"})
+    }).catch(error=>{
+      res.status(404).send({data:null, message:"oops something wrong"})
+    })
+  } catch (error) {
+    res.status(500).send({data:null, message:"internal server down"})
+  }
+}))
+
 
 export default router;

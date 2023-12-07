@@ -16,4 +16,12 @@
 
  export const ADMIN_FETCH_PATIENTS_URL = BASE_URL+"/fetch-patients" 
 
+ export const ADMIN_BLOCK_PATIENTS_URL = BASE_URL+"/block-patient"
+
+ export const ADMIN_UNBLOCK_PATIENTS_URL = BASE_URL+"/unblock-patient"
+
+ export const ADMIN_FETCH_UPDATE_PATIENT_URL = BASE_URL+"/fetch-patient"
+
+ export const ADMIN_UPDATE_PATIENT_URL = BASE_URL+"/update-patient"
+
 

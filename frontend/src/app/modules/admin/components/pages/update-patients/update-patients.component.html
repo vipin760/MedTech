@@ -1,0 +1,38 @@
+<div class="update-doctor">
+    <mat-card>
+        <mat-card-header>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="col-md-12" [formGroup]="UPDATE_FORM" (ngSubmit)="update()">
+               <div class="row">
+                <div class="col-sm-12 col-md-3 col-xl-2 col-xxl-2 text-center">
+                    <text-input
+                    label="name" type="text" [showErrorWhen]="isSubmitted" [control]="this.fc['name']" 
+                    ></text-input>
+                </div>
+                <div class="col-sm-12 col-md-3 col-xl-2 col-xxl-2 text-center">
+                    <text-input
+                    label="email" type="email" [control]="this.fc['email']" [showErrorWhen]="isSubmitted"
+                    >
+                    </text-input>
+                </div>
+                <div class="col-sm-12 col-md-3 col-xl-2 col-xxl-2 text-center">
+                    <text-input
+                    label="phone" type="tel" [control]="this.fc['phone']" [showErrorWhen]="isSubmitted"
+                    >
+                    </text-input>
+                </div>
+                <div class="col-sm-12 col-md-3 col-xl-2 col-xxl-2 text-center">
+                    <text-input
+                    label="address" type="text" [control]="this.fc['address']" [showErrorWhen]="isSubmitted"
+                    >
+                    </text-input>
+                </div>
+                <div class="col-sm-4 col-md-3 col-xl-2 col-xxl-2 text-center">
+                    <default-button text="update" type="submit"></default-button>
+                </div>
+               </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
