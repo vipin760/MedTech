@@ -1,1 +1,20 @@
-<p>update-patients works!</p>
+<div class="container mt-3">
+    <div class="row">
+            <div class="col-md-8"><app-title text="Patient Details"></app-title></div>
+            <div class="col-md-4 col-lg-4 position-absolute end-0" *ngIf="PatientData">
+               <table class="p-3">
+                <tr><td><b>Name:</b></td>
+                    <td><b>{{PatientData.name}}</b></td></tr>
+                <tr>
+                    <td><b>Age:</b></td>
+                    <td><b>56</b></td>
+                </tr>
+                <tr>
+                    <td><b>Ph:</b></td>
+                    <td><b>{{PatientData.phone}}</b></td>
+                </tr>
+               </table>
+            </div>
+
+    </div>
+</div>

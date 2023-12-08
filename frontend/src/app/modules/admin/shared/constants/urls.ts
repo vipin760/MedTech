@@ -1,6 +1,6 @@
  const BASE_URL = "http://localhost:3000/api/admin"
 
- export const ADMIN_LOGIN_URL = BASE_URL+"/login"
+ export const ADMIN_LOGIN_URL = BASE_URL+"/login" 
 
  export const ADMIN_ADD_DOCTOR_URL = BASE_URL+"/add-doctor"
 

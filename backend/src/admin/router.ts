@@ -13,7 +13,7 @@ import mongoose, { ObjectId, Types } from "mongoose";
 import { PatientModel } from "../patients/model";
 
 const router = Router();
-/////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;

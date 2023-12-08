@@ -33,7 +33,7 @@ const generateToken=(doctorData:IDoctorLogin)=>{
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-router.get("/fetch-patients", asyncHandler (async(req,res)=>{
+router.get("/list-patients", asyncHandler (async(req,res)=>{
     try {
         const patientsData = await PatientModel.find()
         if(patientsData){
@@ -47,10 +47,57 @@ router.get("/fetch-patients", asyncHandler (async(req,res)=>{
     }
 }))
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+router.patch("/block-patient/:id", asyncHandler (async(req,res)=>{
+    try{
+        await PatientModel.updateOne({_id:req.params.id},{$set:{isBlocked:true}}).then(data=>{
+            if(data.modifiedCount===1){
+                res.status(200).send({data:null,message:"patients blocked success"})
+            }else{
+                res.status(401).send({data:null, message:"oops something went wrong...!!!"})
+            }
+        }).catch(error=>{
+            res.status(403).send({data:null, message:"please try after some times"})
+        })
 
+    }catch(error){
+        res.status(500).send({data:null,message:"internal server down"})
+    }
+}))
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+router.patch("/unblock-patient/:id", asyncHandler (async(req,res)=>{
+    try{
+        await PatientModel.updateOne({_id:req.params.id},{$set:{isBlocked:false}}).then(data=>{
+            if(data.modifiedCount===1){
+                res.status(200).send({data:null,message:"patients unblocked success"})
+            }else{
+                res.status(401).send({data:null, message:"oops something went wrong...!!!"})
+            }
+        }).catch(error=>{
+            res.status(403).send({data:null, message:"please try after some times"})
+        })
 
+    }catch(error){
+        res.status(500).send({data:null,message:"internal server down"})
+    }
+}))
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+router.get("/fetch-patients/:id", asyncHandler (async(req,res)=>{
+    try {
+        const patientData = await PatientModel.findOne({_id:req.params.id}) 
+        if(patientData){
+            res.status(200).send({data:patientData, message:"patient data fetch successfully"})
+        }else{
+            res.status(401).send({data:null, message:"oops something went wrong...!!!"})
+        }
+    } catch (error) {
+        res.status(500).send({data:null, message:"internal server down"})
+    }
+}))
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export default router

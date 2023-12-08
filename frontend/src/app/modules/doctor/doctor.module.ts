@@ -10,7 +10,7 @@ import { InputContainerComponent } from './components/partials/input-container/i
 import { InputValidatorComponent } from './components/partials/input-validator/input-validator.component';
 import { DefaultButtonComponent } from './components/partials/default-button/default-button.component';
 import { AppTitleComponent } from './components/partials/app-title/app-title.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,6 +19,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { PatientModule } from '../patient/patient.module';
 import { ListPatientsComponent } from './components/pages/list-patients/list-patients.component';
 import { UpdatePatientsComponent } from './components/pages/update-patients/update-patients.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -44,7 +48,12 @@ import { UpdatePatientsComponent } from './components/pages/update-patients/upda
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    PatientModule
+    PatientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule ,
+    MatSelectModule,
+    FormsModule
   ]
 })
 export class DoctorModule { }

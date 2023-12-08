@@ -15,3 +15,11 @@ export interface IUpdatePatientResponse{
     data?:string;
     message:string;
 }
+
+export interface IPatient_Block_unblock{
+    id?:string;
+    message:string;
+    data?:{
+
+    }
+}

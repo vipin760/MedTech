@@ -10,7 +10,7 @@ const routes: Routes = [{path:'', component:DoctorComponent, children:[
   {path:'home',component:HomeComponent},
   {path:'login', component:LoginComponent},
   {path:'list-patients', component:ListPatientsComponent},
-  {path:'update-patients', component:UpdatePatientsComponent},
+  {path:'update-patients/:id', component:UpdatePatientsComponent},
   {path:'', redirectTo:"/doctor/login", pathMatch:"full"}
 ]}];
 

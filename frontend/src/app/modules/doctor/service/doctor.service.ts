@@ -4,8 +4,8 @@ import { Doctor } from '../shared/model/Doctor.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IDoctor } from '../shared/interface.ts/Doctor.interface';
 import { ToastrService } from 'ngx-toastr';
-import { IListPatient } from '../shared/interface.ts/IListPatient';
-import { DOCTOR_GET_ALL_PATIENTS_URL } from '../shared/constants/urls';
+import { IListPatient, IPatient_Block_unblock } from '../shared/interface.ts/IListPatient';
+import { DOCTOR_FETCH_PATIENT_URL, DOCTOR_GET_ALL_PATIENTS_URL, DOCTOR_PATIENT_BLOCK_URL, DOCTOR_PATIENT_UNBLOCK_URL } from '../shared/constants/urls';
 
 const DOCTOR_KEY='Doctor'
 
@@ -63,13 +63,33 @@ private GetDoctorFromLocalStorage():Doctor{
 }
 /////////////////////////////////////////////////////////////////////////////////////
 
-fetchPatients():Observable<any>{
-  return this.http.get<IListPatient>(DOCTOR_GET_ALL_PATIENTS_URL)
+listPatients():Observable<any>{
+  return this.http.get<IListPatient[]>(DOCTOR_GET_ALL_PATIENTS_URL)
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////////
+toggleStatus(id:string, currentPatient:boolean):Observable<IPatient_Block_unblock>{
+  const url = `${currentPatient? DOCTOR_PATIENT_UNBLOCK_URL : DOCTOR_PATIENT_BLOCK_URL}/${id}`
+ return this.http.patch<IPatient_Block_unblock>(url,id).pipe(
+  tap({
+    next:(data) =>{
+      this.toastrService.success(`${data.message}`,"Success")
+    },
+    error:(error)=>{
+      this.toastrService.error(`${error.error.message}`, "Failed")
+    }
+  })
+ )
+}
+/////////////////////////////////////////////////////////////////////////////////////
 
+fetchPatient(id:string):Observable<any>{
+  const url = `${DOCTOR_FETCH_PATIENT_URL}/${id}`
+  return this.http.get<IListPatient>(url)
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 
 }

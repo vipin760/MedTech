@@ -7,7 +7,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatSort ,Sort} from '@angular/material/sort';
 
 
-@Component({
+@Component({ 
   selector: 'app-list-doctors',
   templateUrl: './list-doctors.component.html',
   styleUrls: ['./list-doctors.component.css']
