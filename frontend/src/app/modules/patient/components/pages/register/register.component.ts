@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PatientService } from '../../../service/patient.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ export class RegisterComponent implements OnInit{
   constructor (
     private fb : FormBuilder,
     private patientService:PatientService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -21,7 +23,7 @@ export class RegisterComponent implements OnInit{
       name:['',[Validators.required,Validators.min(4)]],
       email:["",[Validators.required,Validators.email]],
       password:["",[Validators.required,Validators.pattern,Validators.min(6)]],
-      address:["",[Validators.required,Validators.min(4)]]
+      phone:["",[Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern("^[0-9]*$")]]
     })
   }
 
@@ -36,8 +38,8 @@ export class RegisterComponent implements OnInit{
      
       return
     }
-    this.patientService.patientRegister({name:this.fc['name'].value,email:this.fc['email'].value, password:this.fc['password'].value, address:this.fc['address'].value }).subscribe((data)=>{
-      console.log("success login");
+    this.patientService.patientRegister({name:this.fc['name'].value,email:this.fc['email'].value, password:this.fc['password'].value, phone:this.fc['phone'].value }).subscribe((data)=>{
+      this.router.navigateByUrl('/login')
     })
   }
 

@@ -1,9 +1,6 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken'
-import { sample_users } from "../data";
 import { IDoctorLogin } from "../shared/interface/doctor.interface";
-import { Admin } from "../shared/model/admin.model";
-import { DoctorLogin } from "../shared/model/doctor.model";
 import asyncHandler from "express-async-handler";
 import { DoctorModel, PrescriptionModel } from "./model";
 import bcrypt from 'bcryptjs'

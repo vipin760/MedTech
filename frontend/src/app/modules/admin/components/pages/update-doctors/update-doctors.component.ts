@@ -13,7 +13,6 @@ import { IUpdateDoctor } from '../../../shared/interface/IUpdateDoctor';
 export class UpdateDoctorsComponent implements OnInit {
   isSubmitted:boolean = false;
   doctorId!:string
-//  doctorData!:FormGroup;
   LIST_DOCTOR_UPDATE!:IUpdateDoctor;
   UPDATE_FORM!:FormGroup;
 
@@ -42,7 +41,7 @@ update(){
   this.isSubmitted=true
    if(this.UPDATE_FORM.invalid)return; 
    this.adminService.updateData({name:this.fc['name'].value, email:this.fc['email'].value, phone:this.fc['phone'].value, address:this.fc['address'].value},this.doctorId). subscribe(()=>{
-    this.router.navigateByUrl('admin/list-patient')
+    this.router.navigateByUrl('admin/list-doctor')
    })
 
 }

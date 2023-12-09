@@ -3,12 +3,11 @@ import { sample_users } from "../data";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import { HTTP_BAD_REQUEST } from "../constant.ts/http_status";
-import { IPatient } from "../shared/interface/patient.interface";
 import bcrypt from "bcryptjs";
 import { PatientModel } from "./model";
-import { Patient_Register } from "../shared/interface/patient_Register.interface";
-import { PatientToken } from "../shared/interface/pateintToken";
+import { Patient_Register } from "../shared/interface/patient.interface";
 import { PatientTokenModel } from "../shared/model/patientToken.model";
+import { IPatientToken } from '../shared/interface/patient.interface'
 
 const router = Router();
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,18 +36,23 @@ router.post(
     }
   })
 );
-// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvY3RvcjEyMzRAZ21haWwuY29tIiwiaXNQYXRpZW50Ijp0cnVlLCJpYXQiOjE3MDA4NDgwMDgsImV4cCI6MTcwMzQ0MDAwOH0.XmAgigthfwj5TD4CJhdXPsmDwzgNM-s0JwF6QtoSIhc
-// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvY3RvcjEyMzRAZ21haWwuY29tIiwiaXNwUHRpZW50Ijp0cnVlLCJpYXQiOjE3MDA4NDgyMjksImV4cCI6MTcwMzQ0MDIyOX0.OBhLfdVW_xgwRrYgQL7vF1bcf7QMFY9R3_UTjX2fuhA
-const generateToken = (patientData: PatientTokenModel) => {
+
+const generateToken = (patientData: IPatientToken) => {
+
   const token = jwt.sign(
     { email: patientData.email, ispPtient: patientData.isPatient },
     process.env.JWT_SECRET!,
     { expiresIn: "30d" }
   );
-  patientData.token = token;
+ const patientDetails={
+    _id:patientData._id,
+    name:patientData.name,
+    email:patientData.email,
+    token:token
+  }
   console.log("token",patientData);
   
-  return patientData;
+  return patientDetails;
 }; 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,7 +75,7 @@ router.post(
   "/register",
   asyncHandler(async (req, res) => {
     try {
-      const { name, email, password, address } = req.body;
+      const { name, email, password, phone } = req.body;
       const isEmail = await PatientModel.findOne({ email: email });
       if (!isEmail) {
         const passwordHash = await bcrypt.hash(password, 10);
@@ -79,7 +83,7 @@ router.post(
           name,
           email: email.toLowerCase(),
           password: passwordHash,
-          address: address,
+          phone: phone,
           isPatient: true, 
         };
 

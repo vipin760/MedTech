@@ -1,41 +1,41 @@
 import { Router } from "express";
-import { sample_users } from "../data";
 import jwt from "jsonwebtoken";
-import { Admin } from "../shared/model/admin.model";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import { DoctorModel } from "../doctor/model";
-import { IPostDoctor } from "./shared/interface/IPostdoctor";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
-import cookie from "cookie-parser";
-import mongoose, { ObjectId, Types } from "mongoose";
 import { PatientModel } from "../patients/model";
+import { IAdmin, IAdminLogin } from "../shared/interface/admin.interface";
+import { AdminModel } from "./model";
 
 const router = Router();
 //////////////////////////////////////////////////////////////////////////////
 
-router.post("/login", (req, res) => {
+router.post("/login", asyncHandler( async(req, res) => {
   const { email, password } = req.body;
-  const adminData: Admin = sample_users.find(
-    (admin) => email === admin.email && password === admin.password
-  );
-  if (adminData) {
+  const adminData = await AdminModel.findOne({email:email})
+  if (adminData && await bcrypt.compare(password,adminData.password)) {
     res.status(200).send(generateToken(adminData));
   } else {
     res.status(404).send({ message: "admin not found here", data: null });
   }
-});
+}));
 
-const generateToken = (admin: Admin) => {
+const generateToken = (adminData: IAdminLogin) => {
   const token = jwt.sign(
-    { email: admin.email, isAdmin: admin.isAdmin },
+    { email: adminData.email, isAdmin: adminData.isAdmin },
     "randomkey",
     { expiresIn: "30d" }
   );
-  admin.token = token;
+  const adminDetails = {
+  _id:adminData._id,
+  email:adminData.email,
+  name:adminData.name,
+  token:token
+  }
 
-  return admin;
+  return adminDetails;
 };
 ////////////////////////////////////////////////////////////////////////////
 
@@ -55,7 +55,6 @@ router.post(
   asyncHandler(async (req, res) => {
     try {
       const { name, email, phone, address, password } = req.body;
-      console.log("req.body",typeof req.body.phone)
       const emailExist = await DoctorModel.findOne({ email: email });
       if (!emailExist) {
         const hashPassword = await bcrypt.hash(password, 10);
@@ -195,7 +194,6 @@ router.get("/fetch-patients", asyncHandler( async(req,res)=>{
 
 router.patch("/block-patient", asyncHandler ( async (req,res)=>{
   try {
-    console.log(req.body.id)
     await PatientModel.updateOne({_id:req.body.id},{$set:{isBlocked:true}}).then((data)=>{
       if(data.modifiedCount===1){
         res.status(200).send({data:null,message:"patients blocked ....!"})
@@ -215,7 +213,6 @@ router.patch("/block-patient", asyncHandler ( async (req,res)=>{
 router.patch("/unblock-patient", asyncHandler ( async (req,res)=>{
   try {
     await PatientModel.updateOne({_id: req.body.id},{$set:{isBlocked:false}}).then((data)=>{
-     
       if(data.modifiedCount===1){
         res.status(200).send({data:null,message:"patients unblocked ....!"})
       }else{
@@ -249,7 +246,6 @@ router.get("/fetch-patient/:id", asyncHandler (async (req,res)=>{
 ////////////////////////////////////////////////////////////////////////////
 router.put("/update-patient/:id", asyncHandler (async (req,res)=>{
   try {
-    console.log("update ")
     const {name,email,address,phone} = req.body
     const patientData = {
       name, email: email.toLowerCase(), address,phone
