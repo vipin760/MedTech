@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
+import { AddMedicineComponent } from './components/pages/add-medicine/add-medicine.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { MatSelectModule } from '@angular/material/select';
     DefaultButtonComponent,
     AppTitleComponent,
     ListPatientsComponent,
-    UpdatePatientsComponent
+    UpdatePatientsComponent,
+    AddMedicineComponent
   ],
   imports: [
     CommonModule,

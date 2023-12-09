@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Doctor } from '../shared/model/Doctor.model';
+import { Doctor, IPrescription } from '../shared/model/Doctor.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IDoctor } from '../shared/interface.ts/Doctor.interface';
 import { ToastrService } from 'ngx-toastr';
 import { IListPatient, IPatient_Block_unblock } from '../shared/interface.ts/IListPatient';
-import { DOCTOR_FETCH_PATIENT_URL, DOCTOR_GET_ALL_PATIENTS_URL, DOCTOR_PATIENT_BLOCK_URL, DOCTOR_PATIENT_UNBLOCK_URL } from '../shared/constants/urls';
+import { DOCTOR_ADD_PRESCRIPTION_URL, DOCTOR_FETCH_PATIENT_URL, DOCTOR_GET_ALL_PATIENTS_URL, DOCTOR_PATIENT_BLOCK_URL, DOCTOR_PATIENT_UNBLOCK_URL } from '../shared/constants/urls';
 
 const DOCTOR_KEY='Doctor'
+const DOCTOR_ID ='DoctorId'
 
 @Injectable({
   providedIn: 'root'
 })
 export class DoctorService {
 
-  private doctorSubject = new BehaviorSubject<Doctor>(new Doctor())
+  private doctorSubject = new BehaviorSubject<Doctor>(this.GetDoctorFromLocalStorage())
   public doctorObservable!:Observable<Doctor>;
 
   constructor(
@@ -43,6 +44,7 @@ export class DoctorService {
 
 private SetDoctorToLocalStorage(doctor:Doctor){
  localStorage.setItem(DOCTOR_KEY,JSON.stringify(doctor))
+ localStorage.setItem(DOCTOR_ID,JSON.stringify(doctor.id))
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -90,6 +92,11 @@ fetchPatient(id:string):Observable<any>{
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
+addPrescription(data:IPrescription,patientId:string,doctorId:string):Observable<any>{
+  const url = `${DOCTOR_ADD_PRESCRIPTION_URL}?doctorId=${doctorId}&patientId=${patientId}`
+  console.log("working","data",data,"patientId",patientId,"doctorId",doctorId)
+ return this.http.post<IPrescription>(url,data)
+}
 /////////////////////////////////////////////////////////////////////////////////////
 
 }

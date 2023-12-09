@@ -5,7 +5,7 @@ import { IDoctorLogin } from "../shared/interface/doctor.interface";
 import { Admin } from "../shared/model/admin.model";
 import { DoctorLogin } from "../shared/model/doctor.model";
 import asyncHandler from "express-async-handler";
-import { DoctorModel } from "./model";
+import { DoctorModel, PrescriptionModel } from "./model";
 import bcrypt from 'bcryptjs'
 import { PatientModel } from "../patients/model";
 const router = Router()
@@ -27,8 +27,14 @@ router.post("/login",asyncHandler(async(req,res)=>{
 
 const generateToken=(doctorData:IDoctorLogin)=>{
     const token = jwt.sign({email:doctorData.email, isDoctor:doctorData.isDoctor},process.env.JWT_SECRET!,{expiresIn:"30d"})
-    doctorData.token=token
-    return doctorData
+    const doctorDetails={
+       _id:doctorData._id,
+       email:doctorData.email,
+       name:doctorData.name,
+       token:token,
+       isDoctor:doctorData.isDoctor
+    }
+    return doctorDetails
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,6 +104,25 @@ router.get("/fetch-patients/:id", asyncHandler (async(req,res)=>{
         res.status(500).send({data:null, message:"internal server down"})
     }
 }))
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+router.post("/add-prescription",asyncHandler( async(req,res)=>{
+    try {
+        console.log(req.query.doctorId)
+        console.log(req.query.patientId)
+        const { medicineName, quantity, eatingTimes } = req.body
+        const prescriptionSave ={ medicineName, doctorId:req.query.patientId,patientId:req.query.doctorId, quantity, eatingTimes}
+        await PrescriptionModel.create(prescriptionSave).then((data)=>{
+            res.status(200).send({data:null, message:"new prescription created successfully"})
+        }).catch((error)=>{
+            console.log(error)
+            res.status(401).send({data:null, message:"could not be added precscription try after sometime....!"})
+        })
+    } catch (error) { 
+        res.status(500).send("internal server down")
+    }
+}))
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export default router

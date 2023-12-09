@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IListPatient } from '../../../shared/interface.ts/IListPatient';
 import { PatientService } from 'src/app/modules/patient/service/patient.service';
 import { DoctorService } from '../../../service/doctor.service';
@@ -10,25 +10,27 @@ import { DoctorService } from '../../../service/doctor.service';
   styleUrls: ['./update-patients.component.css']
 })
 export class UpdatePatientsComponent implements OnInit{
-  patinetId!:string;
+  patientId!:string;
   PatientData!:IListPatient;
 ///////////////////////////////////////////////////////////
   constructor(
     private activateRoute:ActivatedRoute,
     private doctorService:DoctorService,
+    private router: Router
   ){
- this.patinetId = this.activateRoute.snapshot.paramMap.get('id') ?? ''
+ this.patientId = this.activateRoute.snapshot.paramMap.get('id') ?? ''
   }
 ///////////////////////////////////////////////////////////
 ngOnInit(): void {
-  this.fetchPatients(this.patinetId)
+  this.fetchPatients(this.patientId)
 }
 ///////////////////////////////////////////////////////////
 fetchPatients(id:string){
   this.doctorService.fetchPatient(id).subscribe((data)=>{
+    console.log(data.data)
     this.PatientData = data.data
-    console.log("this.PatientData",this.PatientData)
   })
 }
 ///////////////////////////////////////////////////////////
+
 }
