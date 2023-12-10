@@ -29,7 +29,7 @@ export class PatientService {
         this.toastrService.success(`login success`,`welcome your world`)
       },
       error:(errRes)=>{
-        this.toastrService.error(errRes.error,"login failed")
+        this.toastrService.error(errRes.error.message,"login failed")
       }
     })
    )

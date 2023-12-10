@@ -8,19 +8,19 @@
               </button>
               <div class="collapse navbar-collapse col-md-5" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Service</a>
+                  <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['service']">Service</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                  <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['about']">About</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contact us</a>
+                  <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['contact']">Contact us</a>
                   </li>
-                  <li class="nav-item" >
+                  <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" *ngIf="!patients.token" [routerLink]="['/login']" >Login</a>
                   </li> 
-                  <li class="nav-item">
+                  <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" *ngIf="patients.token" (click)="logout()">Logout</a>
                   </li>
                 </ul>

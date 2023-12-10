@@ -9,5 +9,9 @@
     height: auto;
 }
 tr>td>a{
-  margin-top: 15px;  
+  margin-top: 15px;
+}
+.create-account{
+  text-decoration: none;
+  color:#523f3f87;
 }

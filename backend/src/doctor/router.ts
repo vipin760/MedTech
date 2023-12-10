@@ -13,7 +13,13 @@ router.post("/login",asyncHandler(async(req,res)=>{
     const doctorData = await DoctorModel.findOne({email:email})
     if(doctorData && await bcrypt.compare(password, doctorData.password)){
         if(doctorData.verified){
-            res.status(200).send(generateToken(doctorData))
+            if(doctorData.isBlocked){
+                res
+                .status(401)
+                .send({ data: null, message: "in these account blocked please contact admin immediately" });
+              }else{
+                res.status(200).send(generateToken(doctorData))
+              }
         }else{
             res.status(401).send({data:null,message:"please verify your mail after you can join here...!"})
         }

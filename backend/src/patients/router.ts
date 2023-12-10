@@ -22,7 +22,22 @@ router.post(
         patientData &&
         (await bcrypt.compare(password, patientData?.password))
       ) {
-        res.status(200).send(generateToken(patientData));
+        if(patientData.verified){
+          if(patientData.isBlocked){
+            res
+            .status(HTTP_BAD_REQUEST)
+            .send({ data: null, message: "in these account blocked please contact admin immediately" });
+          }else{
+            res.status(200).send(generateToken(patientData));
+          }
+        }else{
+          res
+          .status(HTTP_BAD_REQUEST)
+          .send({ data: null, message: "please verify your mail then after you can login" });
+
+        }
+
+       
       } else {
         res
           .status(HTTP_BAD_REQUEST)
@@ -50,8 +65,6 @@ const generateToken = (patientData: IPatientToken) => {
     email:patientData.email,
     token:token
   }
-  console.log("token",patientData);
-  
   return patientDetails;
 }; 
 

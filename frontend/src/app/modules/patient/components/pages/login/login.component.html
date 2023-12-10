@@ -15,7 +15,7 @@
             </tr>
             <tr>
                 <td><text-input
-                    label="Password" type="text" [control]="this.fc['password']"  [showErrorWhen]="isSubmitted"
+                    label="Password" type="password" [control]="this.fc['password']"  [showErrorWhen]="isSubmitted"
                     ></text-input></td>
             </tr>
             <tr>
@@ -25,7 +25,7 @@
             </tr>
            </table>
     </form>
-    <a [routerLink]="['/register']" routerLinkActive="router-link-active" >create account</a>
+    <a class="create-account" [routerLink]="['/register']" routerLinkActive="router-link-active" >create account?</a>
     </mat-card-content>
    </mat-card>
 </div>

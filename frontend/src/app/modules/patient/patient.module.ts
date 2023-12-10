@@ -20,6 +20,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppTitleComponent } from './components/partials/app-title/app-title.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { InputSelectorComponent } from './components/partials/input-selector/input-selector.component';
+import { ServiceComponent } from './components/pages/service/service.component';
+import { AboutComponent } from './components/pages/about/about.component';
+import { ContactComponent } from './components/pages/contact/contact.component';
 
 
 @NgModule({
@@ -35,7 +38,10 @@ import { InputSelectorComponent } from './components/partials/input-selector/inp
     TextInputComponent,
     AppTitleComponent,
     RegisterComponent,
-    InputSelectorComponent
+    InputSelectorComponent,
+    ServiceComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
