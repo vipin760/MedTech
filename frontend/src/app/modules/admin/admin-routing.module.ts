@@ -8,16 +8,18 @@ import { ListDoctorsComponent } from './components/pages/list-doctors/list-docto
 import { UpdateDoctorsComponent } from './components/pages/update-doctors/update-doctors.component';
 import { ListPatientsComponent } from './components/pages/list-patients/list-patients.component';
 import { UpdatePatientsComponent } from './components/pages/update-patients/update-patients.component';
+import { adminGuard } from './guards/admin.guard';
+import { AdminLoginGuard } from './guards/admin.login.guard';
 
 const routes: Routes = [{path:'',component:AdminComponent, children:[
-  {path:'home', component:HomeComponent},
-  {path:'login',component:LoginComponent},
-  {path:'add-doctor',component:AddDoctorComponent},
-  {path:'list-doctor', component:ListDoctorsComponent},
-  {path:'update-doctor', component:UpdateDoctorsComponent},
-  {path:'update-doctor/:id', component:UpdateDoctorsComponent},
-  {path:'list-patients', component:ListPatientsComponent },
-  {path:'update-patient/:id', component:UpdatePatientsComponent},
+  {path:'home',canActivate:[adminGuard],component:HomeComponent},
+  {path:'login',canActivate:[AdminLoginGuard],component:LoginComponent},
+  {path:'add-doctor',canActivate:[adminGuard],component:AddDoctorComponent},
+  {path:'list-doctor',canActivate:[adminGuard],component:ListDoctorsComponent},
+  {path:'update-doctor',canActivate:[adminGuard],component:UpdateDoctorsComponent},
+  {path:'update-doctor/:id',canActivate:[adminGuard],component:UpdateDoctorsComponent},
+  {path:'list-patients',canActivate:[adminGuard],component:ListPatientsComponent },
+  {path:'update-patient/:id',canActivate:[adminGuard],component:UpdatePatientsComponent},
   {path:'', redirectTo:'/admin/login', pathMatch:'full'},
 ]}];
 
