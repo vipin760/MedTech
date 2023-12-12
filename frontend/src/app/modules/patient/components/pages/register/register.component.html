@@ -1,53 +1,74 @@
 <div class="register-form">
-    <mat-card>
-       <mat-card-header>
-        <app-title text="Register"></app-title>
-       </mat-card-header>
-       <mat-card-content>
-       <form action="" [formGroup]="registerForm" (ngSubmit)="submit()">
+  <mat-card>
+    <mat-card-header>
+      <app-title text="Register"></app-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form action="" [formGroup]="registerForm" (ngSubmit)="submit()">
         <table>
-            <tr>
-                <td>
-                    <text-input
-                    label="Name" type="text" [showErrorWhen]="isSubmitted" [control]="this.fc['name']"
-                    >
-                    </text-input>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <text-input
-                    label="Email" type="email" [showErrorWhen]="isSubmitted" [control]="this.fc['email']"
-                    >
-                    </text-input>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <text-input
-                    label="Phone Number" type="text" [showErrorWhen]="isSubmitted" [control]="this.fc['phone']"
-                    >
-                    </text-input>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <text-input
-                    label="password" type="password" [showErrorWhen]="isSubmitted" [control]="this.fc['password']"
-                    >
-                    </text-input>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <default-button type="submit"
-                    text="Sign up"
-                    ></default-button>
-                </td>
-            </tr>
+          <tr>
+            <td>
+              <text-input
+                label="Name"
+                type="text"
+                [showErrorWhen]="isSubmitted"
+                [control]="this.fc['name']"
+              >
+              </text-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <text-input
+                label="Email"
+                type="email"
+                [showErrorWhen]="isSubmitted"
+                [control]="this.fc['email']"
+              >
+              </text-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <text-input
+                label="Phone Number"
+                type="text"
+                [showErrorWhen]="isSubmitted"
+                [control]="this.fc['phone']"
+              >
+              </text-input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <text-input
+                label="password"
+                type="password"
+                [showErrorWhen]="isSubmitted"
+                [control]="this.fc['password']"
+              >
+              </text-input>
+            </td>
+          </tr>
+          <tr>
+            <td>  <text-input
+                [control]="this.fc['confirmPassword']"
+                [showErrorWhen]="isSubmitted"
+                label="Confirm Password"
+                type="password" 
+                >
+                </text-input></td>
+          </tr>
+          <tr>
+            <td>
+              <default-button type="submit" text="Sign up"></default-button>
+            </td>
+          </tr>
         </table>
-    </form>
-    <a class="login-router" [routerLink]="['/login']">Already have account?</a>
-       </mat-card-content>
-    </mat-card>
+      </form>
+      <a class="login-router" [routerLink]="['/login']"
+        >Already have account?</a
+      >
+    </mat-card-content>
+  </mat-card>
 </div>

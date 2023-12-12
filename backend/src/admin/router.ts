@@ -8,6 +8,7 @@ import nodemailer from "nodemailer";
 import { PatientModel } from "../patients/model";
 import { IAdmin, IAdminLogin } from "../shared/interface/admin.interface";
 import { AdminModel } from "./model";
+import AdminMiddleware from "../middleware/admin.middleware";
 
 const router = Router();
 //////////////////////////////////////////////////////////////////////////////
@@ -52,6 +53,7 @@ const transporter = nodemailer.createTransport({
 
 router.post(
   "/add-doctor",
+  AdminMiddleware,
   asyncHandler(async (req, res) => {
     try {
       const { name, email, phone, address, password } = req.body;

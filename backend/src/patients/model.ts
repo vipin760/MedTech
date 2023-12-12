@@ -14,8 +14,10 @@ export const UserSchema = new Schema<IPatient>({
     isDoctor: {type: Boolean, default:false}, 
     token: {type:String, required:false},
     verified:{type:Boolean, default:false},
-    isBlocked:{type:Boolean, default:false},
-    isDeleted:{type:Boolean, default:false},
+    isBlocked:{ type:Boolean, default:false},
+    isDeleted:{ type:Boolean, default:false},
+    emailToken:{type:String},
+
 }, {
     timestamps: true,
     toJSON:{

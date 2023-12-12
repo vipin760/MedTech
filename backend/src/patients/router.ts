@@ -8,8 +8,10 @@ import { PatientModel } from "./model";
 import { Patient_Register } from "../shared/interface/patient.interface";
 import { PatientTokenModel } from "../shared/model/patientToken.model";
 import { IPatientToken } from '../shared/interface/patient.interface'
-
+import nodemailer from 'nodemailer';
+import crypto from 'crypto';
 const router = Router();
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 router.post(
   "/login",
@@ -84,6 +86,16 @@ router.get(
   })
 );
 ////////////////////////////////////////////////////////////////////////////////////////////
+var transporter = nodemailer.createTransport({
+  service:'gmail',
+  auth:{
+      user:"vipinm500@gmail.com",
+      pass:"ugyh ilhh gsnl xiro"
+  },
+  tls:{
+      rejectUnauthorized:false
+  }
+})
 router.post(
   "/register",
   asyncHandler(async (req, res) => {
@@ -97,11 +109,36 @@ router.post(
           email: email.toLowerCase(),
           password: passwordHash,
           phone: phone,
-          isPatient: true, 
+          isPatient: true,emailToken: crypto.randomBytes(64).toString('hex'),isVerified:false
         };
 
         const patientSave = await PatientModel.create(newPatient);
-        res.status(200).send(generateTokenResponse(patientSave));
+
+        if(patientSave){
+           // send verification email user
+    console.log("req.headers.host",req.headers.host);
+    var mailOption = {
+        from:` "verify your email" <vipinm500@gmail.com> `,
+        to:patientSave.email,
+        subject:"hello please verify your email",
+        html:`<h2> ${patientSave.name} thanks for registering </h2>
+            <h4>please verify your email and continue....</h4>
+            <a href="http://${req.headers.host}/api/patients/verify-email?token=${patientSave.emailToken}">verify email</a>`
+    }
+    transporter.sendMail(mailOption, function(err,info){
+        if(err){ 
+            console.log(err)  
+        }else{
+            console.log("verification email send to your account")
+            res.status(200).send({data:null, message:"verification email send to your account"});
+        }
+    })
+        }else{
+          res.status(401).send({data:null, message:"data cannot saved please try after some times"});
+        }
+
+
+       
       } else {
         res
           .status(HTTP_BAD_REQUEST)
@@ -117,6 +154,22 @@ router.post(
   })
 );
 
+
+router.get("/verify-email",async(req,res)=>{
+  try {
+      const token = req.query.token
+      const patient = await PatientModel.findOne({emailToken:token})
+      if(patient){
+        patient.emailToken=''
+        patient.verified=true 
+          await patient.save()
+          res.redirect("http://localhost:4200")
+      }
+      
+  } catch (error) {
+      console.log(error)
+  }
+})
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 const generateTokenResponse = (patient: PatientTokenModel) => {

@@ -29,7 +29,7 @@ router.post("/login",asyncHandler(async(req,res)=>{
 }))
 
 const generateToken=(doctorData:IDoctorLogin)=>{
-    const token = jwt.sign({email:doctorData.email, isDoctor:doctorData.isDoctor},process.env.JWT_SECRET!,{expiresIn:"30d"})
+    const token = jwt.sign({id:doctorData._id,email:doctorData.email},process.env.JWT_SECRET!,{expiresIn:"30d"})
     const doctorDetails={
        _id:doctorData._id,
        email:doctorData.email,
@@ -111,8 +111,6 @@ router.get("/fetch-patients/:id", asyncHandler (async(req,res)=>{
 
 router.post("/add-prescription",asyncHandler( async(req,res)=>{
     try {
-        console.log(req.query.doctorId)
-        console.log(req.query.patientId)
         const { medicineName, quantity, eatingTimes } = req.body
         const prescriptionSave ={ medicineName, doctorId:req.query.patientId,patientId:req.query.doctorId, quantity, eatingTimes}
         await PrescriptionModel.create(prescriptionSave).then((data)=>{

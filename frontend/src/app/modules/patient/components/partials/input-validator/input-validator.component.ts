@@ -4,7 +4,9 @@ const ERROR_MESSAGE:any = {
   email:'invalid Email',
   required:'value required',
   minlength:'value is too short',
-  pattern:'please use correct value'
+  pattern:'please use correct value',
+  noMatch:'not match password',
+  strong:'password make strong'
 }
 
 @Component({
@@ -25,6 +27,7 @@ showErrorWhen:boolean=true
 
 checkValidators(){
   const errors =  this.control.errors
+  console.log("errors",errors)
   if(!errors){
     this.showErrorMessages = []
     return

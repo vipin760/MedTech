@@ -8,9 +8,10 @@ export interface IPatient{
     isPatient:boolean;
     isDoctor:boolean;
     token?:string;
-    verified:Boolean;
-    isBlocked:Boolean;
-    isDeleted:Boolean;
+    emailToken:string;
+    verified:boolean;
+    isBlocked:boolean;
+    isDeleted:boolean;
 }
 
 export interface Patient_Register{
@@ -19,6 +20,8 @@ export interface Patient_Register{
     password:string;
     phone:number;
     isPatient:boolean;
+    emailToken:string;
+    isVerified:boolean;
 }
 
 export interface IPatientToken{
