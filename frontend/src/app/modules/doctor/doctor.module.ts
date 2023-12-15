@@ -23,6 +23,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
+import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
+import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { MatSelectModule } from '@angular/material/select';
     DefaultButtonComponent,
     AppTitleComponent,
     ListPatientsComponent,
-    UpdatePatientsComponent
+    UpdatePatientsComponent,
+    ResetPasswordComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     CommonModule,

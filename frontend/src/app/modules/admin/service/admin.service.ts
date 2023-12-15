@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IAdmin } from '../shared/interface/IAdmin';
+import { IAdmin, IPassword_reset } from '../shared/interface/IAdmin';
 import { AdminLogin } from '../shared/model/Admin.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -16,6 +16,7 @@ import {
   ADMIN_UNBLOCK_PATIENTS_URL,
   ADMIN_UPDATE_DOCTOR_URL,
   ADMIN_UPDATE_PATIENT_URL,
+  ADMIN_URL,
 } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
 import { IDoctor } from '../../doctor/shared/interface.ts/Doctor.interface';
@@ -213,4 +214,32 @@ udatePatient(data:IListPatient,id:string):Observable<IUpdatePatientResponse>{
 }
 
 ////////////////////////////////////////////////////////////////////
+
+forgetpassword(email:string):Observable<string>{
+  console.log("admin forget password success 1")
+  return this.http.post<string>(`${ADMIN_URL}/forget-password`,email).pipe(
+    tap({
+      next:(data)=>{
+        this.toastrService.success(data,'Success')
+      },
+      error:(error)=>{
+        this.toastrService.error(error.error,'Failed')
+      }
+    })
+  )
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+resetPassword(token:string,passwordData:IPassword_reset):Observable<string>{
+  return this.http.patch<string>(`${ADMIN_URL}/reset-password/${token}`,passwordData).pipe(
+    tap({
+      next:(data)=>{
+        this.toastrService.success(data,"Success")
+      },
+      error:(error)=>{
+        this.toastrService.error(error.error,"Failed")
+      }
+    })
+  )
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
 }

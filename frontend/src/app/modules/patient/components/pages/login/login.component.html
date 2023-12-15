@@ -1,10 +1,10 @@
 <div class="login-form">
    <mat-card>
-    <mat-card-header>
+    <div class="col-md-12 mt-3 mx-auto">
         <app-title text="Login"></app-title>
-    </mat-card-header>
+    </div>
     <mat-card-content>
-      <form action="" [formGroup]="loginForm" (ngSubmit)="submit()">
+      <form class="p-3" [formGroup]="loginForm" (ngSubmit)="submit()"> 
         <table>
             <tr>
                 <td> <text-input
@@ -25,7 +25,13 @@
             </tr>
            </table>
     </form>
-    <a class="create-account" [routerLink]="['/register']" routerLinkActive="router-link-active" >create account?</a>
+    
+    <div class="col-md-12 text-center">
+        <a class="create-account" [routerLink]="['/register']" routerLinkActive="router-link-active" >create account?</a>
+    </div>
+    <div class="col-md-12 text-center mt-3">
+        <a class="create-account" [routerLink]="['/forget-password']" routerLinkActive="router-link-active" >forget Password?</a>
+    </div>
     </mat-card-content>
    </mat-card>
 </div>

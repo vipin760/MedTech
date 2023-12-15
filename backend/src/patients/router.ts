@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import { sample_users } from "../data";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
@@ -116,7 +116,6 @@ router.post(
 
         if(patientSave){
            // send verification email user
-    console.log("req.headers.host",req.headers.host);
     var mailOption = {
         from:` "verify your email" <vipinm500@gmail.com> `,
         to:patientSave.email,
@@ -189,4 +188,62 @@ const generateTokenResponse = (patient: PatientTokenModel) => {
 };
 ////////////////////////////////////////////////////////////////////////////////////////////
 
+router.post("/forget-password", asyncHandler( async(req:Request,res:Response)=>{
+  try {
+    console.log("forget password success 2")
+    const patientData = await PatientModel.findOne({email:req.body.email})
+    const token = jwt.sign({id:patientData?.id,email:patientData?.email},"thisrandom",{expiresIn:"30min"})
+    if(patientData&&token){
+      console.log("forget password success 2")
+      var mailOption = {
+        from:` "Reset password" <vipinm500@gmail.com> `,
+        to:patientData.email,
+        subject:"hello please Reset Password",
+        html:`<h2> ${patientData.name} reset your password make strong</h2>
+            <h4>please reset password and continue</h4>
+            <a href="http://localhost:4200/reset-password/${token}">reset password</a>`
+    }
+    transporter.sendMail(mailOption, function(err,info){
+        if(err){ 
+            console.log(err)  
+            res.status(400).json("Oops some happened wrong please try after some times")
+        }else{
+            console.log("verification email send to your account")
+            res.status(200).json("reset password send in your providing email please reset now valid only 30 minutes");
+        }
+    })
+
+    }else{
+      res.status(404).json("the request resource associated with the provided email address could not be find")
+    }
+    
+  } catch (error) {
+    res.status(500).json("internal server down")
+  }
+}))
+////////////////////////////////////////////////////////////////////////////////////////////
+router.patch("/reset-password/:id",asyncHandler (async(req:Request,res:Response)=>{
+  try {
+    const token = req.params.id
+    const {password,cpassword} = req.body
+    const decodeToken:any = jwt.verify(token,"thisrandom")
+    const patientData = await PatientModel.findOne({_id:decodeToken.id})
+    if(patientData){
+      const passwordHash = await bcrypt.hash(password,10)
+      await PatientModel.updateOne({email:patientData.email},{$set:{password:passwordHash}}).then(data=>{
+        if(data.modifiedCount===1){
+          res.status(200).json("password reset successfully")
+        }else{
+          res.status(404).json("password cannot reset please try after sometimes")
+        }
+      })
+    }else{
+      res.status(404).json("token exiredpatient")
+    }
+    
+  } catch (error) {
+    res.status(500).json("token expired")
+  }
+}))
+////////////////////////////////////////////////////////////////////////////////////////////
 export default router;

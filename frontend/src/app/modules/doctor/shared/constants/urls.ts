@@ -11,3 +11,5 @@ export const DOCTOR_PATIENT_UNBLOCK_URL = BASE_URL+"/unblock-patient"
 export const DOCTOR_FETCH_PATIENT_URL = BASE_URL+"/fetch-patients"
 
 export const DOCTOR_ADD_PRESCRIPTION_URL = BASE_URL+"/add-prescription"
+
+export const DOCTOR_URL="http://localhost:3000/api/doctor"

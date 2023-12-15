@@ -3,9 +3,9 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { PatientLogin } from '../shared/model/Patient.Login.model';
 import { HttpClient } from '@angular/common/http';
 import { IPatientsLogin } from '../shared/interface/IPatientLogin';
-import { PATIENTS_LOGIN_URL, PATIENTS_REGISTER_URL } from '../shared/constants/urls';
+import { PATIENTS_LOGIN_URL, PATIENTS_REGISTER_URL, PATIENT_URL } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
-import { IPatientRegister } from '../shared/interface/IPatientRegister';
+import { IPassword_reset, IPatientRegister } from '../shared/interface/IPatientRegister';
 const PATIENT_KEY='Patientsss'
 
 @Injectable({
@@ -72,5 +72,32 @@ patientRegister(patientData:IPatientRegister):Observable<IPatientRegister>{
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-
+forgetpassword(email:string):Observable<string>{
+  console.log("forget password success 1")
+  return this.http.post<string>(`${PATIENT_URL}/forget-password`,email).pipe(
+    tap({
+      next:(data)=>{
+        this.toastrService.success(data,'Success')
+      },
+      error:(error)=>{
+        this.toastrService.error(error.error,'Failed')
+      }
+    })
+  )
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+resetPassword(token:string,passwordData:IPassword_reset):Observable<string>{
+  return this.http.patch<string>(`${PATIENT_URL}/reset-password/${token}`,passwordData).pipe(
+    tap({
+      next:(data)=>{
+        this.toastrService.success(data,"Success")
+      },
+      error:(error)=>{
+        this.toastrService.error(error.error,"Failed")
+      }
+    })
+  )
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
 }

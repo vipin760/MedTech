@@ -24,4 +24,6 @@
 
  export const ADMIN_UPDATE_PATIENT_URL = BASE_URL+"/update-patient"
 
+ export const ADMIN_URL=BASE_URL
+
 

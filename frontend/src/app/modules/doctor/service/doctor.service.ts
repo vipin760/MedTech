@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Doctor, IPrescription } from '../shared/model/Doctor.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { IDoctor } from '../shared/interface.ts/Doctor.interface';
+import { IDoctor, IPassword_reset } from '../shared/interface.ts/Doctor.interface';
 import { ToastrService } from 'ngx-toastr';
 import { IListPatient, IPatient_Block_unblock } from '../shared/interface.ts/IListPatient';
-import { DOCTOR_ADD_PRESCRIPTION_URL, DOCTOR_FETCH_PATIENT_URL, DOCTOR_GET_ALL_PATIENTS_URL, DOCTOR_PATIENT_BLOCK_URL, DOCTOR_PATIENT_UNBLOCK_URL } from '../shared/constants/urls';
+import { DOCTOR_ADD_PRESCRIPTION_URL, DOCTOR_FETCH_PATIENT_URL, DOCTOR_GET_ALL_PATIENTS_URL, DOCTOR_PATIENT_BLOCK_URL, DOCTOR_PATIENT_UNBLOCK_URL, DOCTOR_URL } from '../shared/constants/urls';
 
 const DOCTOR_KEY='Doctor'
 const DOCTOR_ID ='DoctorId'
@@ -99,4 +99,32 @@ addPrescription(data:IPrescription,patientId:string,doctorId:string):Observable<
 }
 /////////////////////////////////////////////////////////////////////////////////////
 
+forgetpassword(email:string):Observable<string>{
+  console.log("forget password success 1")
+  return this.http.post<string>(`${DOCTOR_URL}/forget-password`,email).pipe(
+    tap({
+      next:(data)=>{
+        this.toastrService.success(data,'Success')
+      },
+      error:(error)=>{
+        this.toastrService.error(error.error,'Failed')
+      }
+    })
+  )
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+resetPassword(token:string,passwordData:IPassword_reset):Observable<string>{
+  console.log("thaneeeee")
+  return this.http.patch<string>(`http://localhost:3000/api/doctor/reset-password/${token}`,passwordData).pipe(  
+    tap({
+      next:(data)=>{
+        this.toastrService.success(data,"Success")
+      },
+      error:(error)=>{
+        this.toastrService.error(error.error,"Failed")
+      }
+    })
+  )
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
 }

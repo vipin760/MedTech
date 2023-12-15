@@ -10,6 +10,8 @@ import { ListPatientsComponent } from './components/pages/list-patients/list-pat
 import { UpdatePatientsComponent } from './components/pages/update-patients/update-patients.component';
 import { adminGuard } from './guards/admin.guard';
 import { AdminLoginGuard } from './guards/admin.login.guard';
+import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 
 const routes: Routes = [{path:'',component:AdminComponent, children:[
   {path:'home',canActivate:[adminGuard],component:HomeComponent},
@@ -20,6 +22,8 @@ const routes: Routes = [{path:'',component:AdminComponent, children:[
   {path:'update-doctor/:id',canActivate:[adminGuard],component:UpdateDoctorsComponent},
   {path:'list-patients',canActivate:[adminGuard],component:ListPatientsComponent },
   {path:'update-patient/:id',canActivate:[adminGuard],component:UpdatePatientsComponent},
+  {path:'forget-password',component:ForgetPasswordComponent},
+  {path:'reset-password/:id',component:ResetPasswordComponent},
   {path:'', redirectTo:'/admin/login', pathMatch:'full'},
 ]}];
 

@@ -27,6 +27,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ListPatientsComponent } from './components/pages/list-patients/list-patients.component';
 import { UpdatePatientsComponent } from './components/pages/update-patients/update-patients.component';
+import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { UpdatePatientsComponent } from './components/pages/update-patients/upda
     ListDoctorsComponent,
     UpdateDoctorsComponent,
     ListPatientsComponent,
-    UpdatePatientsComponent
+    UpdatePatientsComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

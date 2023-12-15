@@ -23,6 +23,8 @@ import { InputSelectorComponent } from './components/partials/input-selector/inp
 import { ServiceComponent } from './components/pages/service/service.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     InputSelectorComponent,
     ServiceComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
