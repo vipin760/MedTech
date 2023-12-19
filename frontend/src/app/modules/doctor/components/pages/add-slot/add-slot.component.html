@@ -1,0 +1,82 @@
+<div class="container d-flext justify-content-center p-4 mt-3">
+  <mat-card>
+    <div class="p-4 text-center"> <app-title text="LIST SLOT"></app-title></div>
+    <mat-card-header>
+        <mat-form-field>
+            <input matInput placeholder="Search here...." (keyup)="filterFun($event)" >
+        </mat-form-field>
+    </mat-card-header>
+      <mat-card-content>
+        <div class="table-responsive">
+          <table matSort mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="date">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let element">{{element.date}}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="time">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef>Time</th>
+                <td mat-cell *matCellDef="let element">{{element.time}}</td>
+            </ng-container>
+            <ng-container matColumnDef="booked">
+                <th mat-header-cell *matHeaderCellDef>Booked</th> 
+                <td mat-cell *matCellDef="let element">
+                <h6><p *ngIf="element.booked">booked</p>
+                  <p *ngIf="!element.booked">available</p>
+                </h6>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let element">
+                    <default-button text="Cancel" (onClick)="cancelSlot(element.date,element.time)"></default-button> 
+                </td>
+            </ng-container>
+  
+  
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
+    </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButtons aria-label="select page of periodic elements "></mat-paginator>
+      </mat-card-content>
+  </mat-card>
+  
+</div>
+
+<div class="container d-flex justify-content-center p-4 mt-3">
+<div class="row">
+        <mat-card>
+            <div class="col-md-12 p-3">
+                <app-title text="Add Slot"></app-title>
+            </div>
+              <div class="col-md-12 d-flex justify-content-between align-items-center">
+                <label for="date">Date:</label>
+                <input class="styled-input" type="date" id="date" [(ngModel)]="date" />
+              </div>
+              
+              <div class="col-md-12 d-flex justify-content-between align-items-center mt-3" *ngIf="timeSlots.length > 0">
+                <label for="startTime">Select Time Slot:</label>
+                <select class="styled-input" id="startTime" [(ngModel)]="startTime">
+                    <option value="" disabled selected>Select a time slot</option>
+                  <option *ngFor="let slot of timeSlots" [value]="slot">{{ slot }}</option>
+                </select>
+              </div>
+              <div class="col-md-12 mt-3">
+                <default-button text="add slot" (click)="saveSlot()">Save Slot</default-button>
+              </div>
+        </mat-card>
+</div>
+</div>
+
+
+  
+  <!-- <div *ngIf="startTime !== ''">
+    <label for="endTime">End Time:</label>
+    <select id="endTime" [(ngModel)]="endTime">
+      <option *ngFor="let slot of timeSlots.slice(timeSlots.indexOf(startTime) + 1)" [value]="slot">{{ slot }}</option>
+    </select>
+  </div> -->
+  
+ 
+  

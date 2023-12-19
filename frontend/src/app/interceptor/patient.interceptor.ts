@@ -11,10 +11,13 @@ export class PatientTokenInterceptorService implements HttpInterceptor{
 
     constructor(){}
     intercept(_req: HttpRequest<any>, _next: HttpHandler): Observable<HttpEvent<any>> {
-       let token = localStorage.getItem('Patient') 
+       let patientData = localStorage.getItem('Patient')
+       const patientParse = patientData?JSON.parse(patientData):''
+       const token = patientParse? patientParse.token:null
+       console.log(token)
         let jwttoken = _req.clone({
             setHeaders:{
-                'x-auth-token':token ? token :''
+                'Authorization':token ? token :''
             }
         })
         return _next.handle(jwttoken)

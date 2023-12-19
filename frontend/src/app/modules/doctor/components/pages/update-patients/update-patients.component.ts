@@ -27,7 +27,6 @@ ngOnInit(): void {
 ///////////////////////////////////////////////////////////
 fetchPatients(id:string){
   this.doctorService.fetchPatient(id).subscribe((data)=>{
-    console.log(data.data)
     this.PatientData = data.data
   })
 }

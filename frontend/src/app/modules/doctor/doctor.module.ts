@@ -25,6 +25,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
+import { AddSlotComponent } from './components/pages/add-slot/add-slot.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ForgetPasswordComponent } from './components/pages/forget-password/forg
     ListPatientsComponent,
     UpdatePatientsComponent,
     ResetPasswordComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    AddSlotComponent
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Doctor, IPrescription } from '../shared/model/Doctor.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { IDoctor, IPassword_reset } from '../shared/interface.ts/Doctor.interface';
+import { IDatetime, IDoctor, IFetchAppoinmentResponse, IPassword_reset, ISlotData, ISlotData_Res } from '../shared/interface.ts/Doctor.interface';
 import { ToastrService } from 'ngx-toastr';
 import { IListPatient, IPatient_Block_unblock } from '../shared/interface.ts/IListPatient';
 import { DOCTOR_ADD_PRESCRIPTION_URL, DOCTOR_FETCH_PATIENT_URL, DOCTOR_GET_ALL_PATIENTS_URL, DOCTOR_PATIENT_BLOCK_URL, DOCTOR_PATIENT_UNBLOCK_URL, DOCTOR_URL } from '../shared/constants/urls';
@@ -127,4 +127,41 @@ resetPassword(token:string,passwordData:IPassword_reset):Observable<string>{
   )
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
+addSlot(slotData:ISlotData):Observable<ISlotData_Res>{
+  console.log("slotData",slotData)
+  const url =`${DOCTOR_URL}/add-slot`
+  return this.http.put<ISlotData_Res>(url,slotData).pipe(
+    tap({
+      next:(data)=>{
+        this.toastrService.success(data.message,"success")
+      },
+      error:(errorRes)=>{
+        console.log("hello this is ",errorRes)
+        this.toastrService.error(`${errorRes.error.message}`,"Failed")
+      }
+    })
+  )
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+getSlot():Observable<any>{
+  const url = `${DOCTOR_URL}/fetch-appointment`
+  return this.http.get<any>(url)
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+cancelSlot(datetime:IDatetime):Observable<any>{
+  console.log("service",datetime)
+  const url = `${DOCTOR_URL}/remove-appointment`
+  return this.http.patch<any>(url,datetime).pipe(
+    tap({ 
+      next:(data)=>{
+        this.toastrService.success(data.message,"Success")
+      },
+      error:(error)=>{
+        this.toastrService.error(`${error.error.message}`,"Failed") 
+      }
+    })
+  )
+}
+
+
 }

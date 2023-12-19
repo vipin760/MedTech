@@ -1,0 +1,29 @@
+/* Add this to your component's CSS or in styles.css */
+
+.styled-input {
+    border: 2px solid #3498db; /* Set the border color */
+    border-radius: 50px; /* Make it a circle by setting border-radius to half of the height */
+    padding: 10px; /* Add some padding for better visual */
+    transition: border-color 0.3s ease; /* Add a smooth transition for the border color */
+  
+    /* Optional: Add box-shadow for a subtle effect */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .styled-input:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: #e74c3c; /* Change border color on focus */
+  }
+  
+  /* Optional: Add hover effect */
+  .styled-input:hover {
+    border-color: #2980b9; /* Change border color on hover */
+  }
+  
+  /* Optional: Add some animation on focus */
+  .styled-input:focus::placeholder {
+    opacity: 0; /* Hide placeholder text on focus */
+    transform: translateY(-10px); /* Move placeholder text upward */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  

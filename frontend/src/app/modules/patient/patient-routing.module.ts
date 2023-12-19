@@ -9,6 +9,7 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
+import { ListDoctorsComponent } from './components/pages/list-doctors/list-doctors.component';
 
 const routes: Routes = [{path:'',component:PatientComponent, children:[
   {path:'login', component:LoginComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [{path:'',component:PatientComponent, children:[
   {path:'contact', component:ContactComponent},
   {path:'forget-password',component:ForgetPasswordComponent},
   {path:'reset-password/:id', component:ResetPasswordComponent},
+  {path:'list-doctors',component:ListDoctorsComponent},
   {path:'',redirectTo:'/home',pathMatch:'full'},
 ]}];
 

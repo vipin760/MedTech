@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { IPatientsLogin } from '../shared/interface/IPatientLogin';
 import { PATIENTS_LOGIN_URL, PATIENTS_REGISTER_URL, PATIENT_URL } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
-import { IPassword_reset, IPatientRegister } from '../shared/interface/IPatientRegister';
+import { IAvailableDoctor, IPassword_reset, IPatientRegister } from '../shared/interface/IPatientRegister';
 const PATIENT_KEY='Patientsss'
 
 @Injectable({
@@ -99,5 +99,9 @@ resetPassword(token:string,passwordData:IPassword_reset):Observable<string>{
   )
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
+getAvailableDoctors():Observable<IAvailableDoctor>{
+  const url =`${PATIENT_URL}/fetch-appointment-doctorsList`
+  return this.http.get<IAvailableDoctor>(url)
+}
 //////////////////////////////////////////////////////////////////////////////////////////////
 }

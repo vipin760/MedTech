@@ -25,6 +25,9 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
+import { ListDoctorsComponent } from './components/pages/list-doctors/list-doctors.component';
+import { ListSlotComponent } from './components/pages/list-slot/list-slot.component';
+import { ProfileComponent } from './components/pages/profile/profile.component';
 
 
 @NgModule({
@@ -45,7 +48,10 @@ import { ResetPasswordComponent } from './components/pages/reset-password/reset-
     AboutComponent,
     ContactComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ListDoctorsComponent,
+    ListSlotComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

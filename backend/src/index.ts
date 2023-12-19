@@ -22,7 +22,9 @@ app.use(express.json())
 app.use("/api/patients",patients_router)
 app.use("/api/admin",admin_router)
 app.use("/api/doctor",doctor_router);
-
+// app.get("/api/doctor",(req,res)=>{
+//   res.status(200).send({message:"response success"})
+// });
 
 app.listen(3000,()=>{
   console.log("server connected");
