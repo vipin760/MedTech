@@ -37,3 +37,9 @@ export interface IFetchAppoinmentResponse {
     date:string;
     time:string;
   }
+
+  export interface MenuItem {
+    icon: string;
+    label:string;
+    route:string
+  }

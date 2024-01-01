@@ -1,7 +1,8 @@
 import { Component, Input, computed, signal } from '@angular/core';
 import { DoctorService } from '../../../service/doctor.service';
 import { Doctor } from '../../../shared/model/Doctor.model';
-import { MenuItem } from 'src/app/shared/interfaces/IDoctor';
+import { MenuItem } from '../../../shared/interface.ts/Doctor.interface';
+
 
 @Component({
   selector: 'app-doctor-header',

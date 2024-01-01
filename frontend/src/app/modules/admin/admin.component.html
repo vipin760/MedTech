@@ -1,2 +1,15 @@
-<app-admin-header></app-admin-header>
-<router-outlet></router-outlet>
+<mat-toolbar class="mat-elevation-z3">
+    <button mat-icon-button (click)="collapsed.set(!collapsed())">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <img class="logo" src="/assets/download (1).png" alt="">
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav opened mode="side" [style.width]="sideNavWidth()">
+            <app-admin-header [collapsed]="collapsed()"></app-admin-header>
+        </mat-sidenav>
+        <mat-sidenav-content class="content" [style.margin-left]="sideNavWidth()">
+            
+  <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
