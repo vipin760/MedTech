@@ -29,6 +29,11 @@ import { ListPatientsComponent } from './components/pages/list-patients/list-pat
 import { UpdatePatientsComponent } from './components/pages/update-patients/update-patients.component';
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatButtonModule} from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list'
 
 
 @NgModule({
@@ -64,7 +69,12 @@ import { ResetPasswordComponent } from './components/pages/reset-password/reset-
      MatFormFieldModule, 
      MatSelectModule,
      MatInputModule,
-     FormsModule
+     FormsModule,
+     MatToolbarModule,
+     MatButtonModule,
+     MatIconModule,
+     MatSidenavModule,
+     MatListModule
   ]
 })
 export class AdminModule { }
