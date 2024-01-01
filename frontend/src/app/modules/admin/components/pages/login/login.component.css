@@ -1,10 +1,24 @@
 .login-form{
     display: flex;
+    margin-top: 12rem;
+    height: auto;
     width: 100%;
-    height: auto;
     justify-content: center;
-    margin-top: 25px;
+    padding: 3rem;
 }
-.mat-card{
-    height: auto;
+mat-card-header{
+    margin: 12px;
+}
+mat-card{
+    display: flex;
+    height: 30rem;
+    width:30rem;
+    justify-content: center;
+    align-items:center;
+    object-fit: cover;
+
+}
+.forget-password{
+    text-decoration: none;
+    margin-top: 21px;
 }

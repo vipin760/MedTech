@@ -1,10 +1,10 @@
-<mat-toolbar class="mat-elevation-z3">
+<mat-toolbar class="mat-elevation-z3" *ngIf="admin.token">
     <button mat-icon-button (click)="collapsed.set(!collapsed())">
         <mat-icon>menu</mat-icon>
     </button>
     <img class="logo" src="/assets/download (1).png" alt="">
     </mat-toolbar>
-    <mat-sidenav-container>
+    <mat-sidenav-container *ngIf="admin.token">
         <mat-sidenav opened mode="side" [style.width]="sideNavWidth()">
             <app-admin-header [collapsed]="collapsed()"></app-admin-header>
         </mat-sidenav>
@@ -13,3 +13,7 @@
   <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
+
+    <div *ngIf="!admin.token">
+        <router-outlet></router-outlet>
+    </div>

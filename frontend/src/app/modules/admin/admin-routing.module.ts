@@ -25,7 +25,7 @@ const routes: Routes = [{path:'',component:AdminComponent, children:[
   {path:'forget-password',component:ForgetPasswordComponent},
   {path:'reset-password/:id',component:ResetPasswordComponent},
   {path:'', redirectTo:'/admin/login', pathMatch:'full'},
-]}];
+]}]; 
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

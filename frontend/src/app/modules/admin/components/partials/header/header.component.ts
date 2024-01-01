@@ -33,13 +33,13 @@ export class HeaderComponent {
     },
     {
       icon:' local_library',
-      label:'about',
-      route:'about'
+      label:'Doctors',
+      route:'/admin/list-doctor'
     },
     {
       icon:'local_laundry_service',
-      label:'service',
-      route:'service'
+      label:'Patients',
+      route:'/admin/list-patients'
     }
   ])
   profilePicSize = computed(()=> this.sideNavCollapsed()? '32' : '100')
