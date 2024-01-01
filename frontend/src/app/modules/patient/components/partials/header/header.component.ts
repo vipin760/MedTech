@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PatientLogin } from '../../../shared/model/Patient.Login.model';
 import { PatientService } from '../../../service/patient.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

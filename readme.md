@@ -2342,4 +2342,4 @@ If the hospital management system is integrated with other systems, you may need
                 label="Phone Number" type="text" [control]="this.fc['phone']" [showErrorWhen]="isSubmitted" 
                 ></text-input>
             </td>
-          </tr>
+          </tr> 

@@ -94,7 +94,7 @@ var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "vipinm500@gmail.com",
-    pass: "ugyh ilhh gsnl xiro",
+    pass: process.env.REGISTER_PASSWORD,
   },
   tls: {
     rejectUnauthorized: false,
@@ -104,7 +104,9 @@ router.post(
   "/register",
   asyncHandler(async (req, res) => {
     try {
+      console.log("working",process.env.REGISTER_PASSWORD)
       const { name, email, password, phone } = req.body;
+      console.log(req.body)
       const isEmail = await PatientModel.findOne({ email: email });
       if (!isEmail) {
         const passwordHash = await bcrypt.hash(password, 10);
@@ -118,10 +120,7 @@ router.post(
           isVerified: false,
         };
 
-        const patientSave = await PatientModel.create(newPatient);
-
-        if (patientSave) {
-          // send verification email user
+        await PatientModel.create(newPatient).then(patientSave=>{
           var mailOption = {
             from: ` "verify your email" <vipinm500@gmail.com> `,
             to: patientSave.email,
@@ -143,14 +142,9 @@ router.post(
                 });
             }
           });
-        } else {
-          res
-            .status(401)
-            .send({
-              data: null,
-              message: "data cannot saved please try after some times",
-            });
-        }
+          
+        })
+        
       } else {
         res
           .status(HTTP_BAD_REQUEST)

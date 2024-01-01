@@ -40,3 +40,9 @@ appointment=[
     ]
     }
 ]
+
+design
+home
+service
+contact
+home card
