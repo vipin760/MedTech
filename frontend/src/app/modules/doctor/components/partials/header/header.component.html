@@ -1,4 +1,20 @@
-<div class="container-fluid bg-info shadow">
+<div class="sidenav-container">
+  <img [width]="profilePicSize()" [height]="profilePicSize()" src="/assets/269.jpg" alt="">
+  <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
+      <h2>Your Channel</h2>
+  <p>Jhon wick</p>
+  </div>
+  </div>
+  <mat-nav-list>
+      <a class="menu-item"
+       mat-list-item *ngFor="let item of menuItems()" [routerLink]="item.route" routerLinkActive="selected-menu-item" #rla="routerLinkActive" [activated]="rla.isActive">
+          <mat-icon  matListItemIcon>{{item.icon}}</mat-icon>
+          <span matListItemTitle *ngIf="!sideNavCollapsed()" >{{item.label}}</span>
+      </a>
+  </mat-nav-list> 
+
+
+<!-- <div class="container-fluid bg-info shadow">
     <div class="row">
         <div class="top"></div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,11 +36,11 @@
                 <a class="nav-link" *ngIf="doctor.token" (click)="logout()">Logout</a>
                   </li>
                 </ul>
-                <!-- <form class="d-flex">
+                <form class="d-flex">
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-success" type="submit">Search</button>
-                </form> -->
+                </form> 
               </div>
           </nav>
     </div>
-    </div>
+    </div> -->

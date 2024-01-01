@@ -26,6 +26,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { AddSlotComponent } from './components/pages/add-slot/add-slot.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -59,7 +63,12 @@ import { AddSlotComponent } from './components/pages/add-slot/add-slot.component
     MatPaginatorModule,
     MatSortModule ,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    MatToolbarModule
   ]
 })
 export class DoctorModule { }

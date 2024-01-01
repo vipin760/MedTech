@@ -33,9 +33,9 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let element">
-            <default-button text="block" *ngIf="!element.isBlocked" (onClick)="toggleBlockStatus(element.id,element.isBlocked)"></default-button>
-            <default-button text="unblock" bgColor="red" *ngIf="element.isBlocked"  (onClick)="toggleBlockStatus(element.id,element.isBlocked)"></default-button>
-            <default-button text="update" (onClick)="update(element.id)"></default-button> 
+            <default-button class="actions-btn" text="block" *ngIf="!element.isBlocked" (onClick)="toggleBlockStatus(element.id,element.isBlocked)"></default-button>
+            <default-button class="actions-btn" text="unblock" bgColor="red" *ngIf="element.isBlocked"  (onClick)="toggleBlockStatus(element.id,element.isBlocked)"></default-button>
+            <default-button class="actions-btn" text="update" (onClick)="update(element.id)"></default-button> 
         </td>
     </ng-container>
 

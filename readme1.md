@@ -1,3 +1,43 @@
+admin navbar
+doctor navbar  ✔
+patinet navbar  ✔
+
+
+patient booking 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 patients
 login
 register
@@ -41,8 +81,3 @@ appointment=[
     }
 ]
 
-design
-home
-service
-contact
-home card

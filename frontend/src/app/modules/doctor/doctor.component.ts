@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-doctor',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./doctor.component.css']
 })
 export class DoctorComponent {
+  collapsed = signal(false)
+  sideNavWidth = computed(()=> this.collapsed()? '65px' : '250px');
 
 }
